@@ -1,0 +1,192 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+
+  set classes = [
+    'field',
+    'field--item',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set row_classes = [
+    'field',
+    'field--items',
+    'row',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+{%
+  set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'sr-only',
+  ]
+%}
+
+{%
+  set i = 0
+%}
+ 
+{% 
+  set ratio = element['#object'].field_promo_image_ratio.value
+%}
+
+{% if label_hidden %}
+  {% if multiple %}
+    <div class="s3-n s3-t">
+      <div class="row s3-m-8 promo-image-block" >
+      {% for item in items %}
+        {% set i = i + 1 %}
+        {% if item.content['#field_collection_item'].field_read_more_link.0.title != '' %}
+            {% set readmore = item.content['#field_collection_item'].field_read_more_link.0.title%}
+          {% else %}
+            <!-- {% set readmore = 'Learn More'%} -->
+            {% set readmore = '' %}
+          {% endif %}
+        <div class="col-xs-12 col-sm-4 promo_4">
+            <div class="s3-img-block {% if ratio %}{{ ratio }}{% endif %}">
+                {% if item.content['#field_collection_item'].field_read_more_link.0.uri != '' %}
+                    {% if 'http://' in item.content['#field_collection_item'].field_read_more_link.0.uri or 'https://' in item.content['#field_collection_item'].field_read_more_link.0.uri%}
+                        {% set pathurl = item.content['#field_collection_item'].field_read_more_link.0.uri %}
+                      {% else %}
+                        {% set iurl = item.content['#field_collection_item'].field_read_more_link.0.uri|split(':')%}
+                        {% set pathurl = base_path ~ iurl|last %}
+                      {% endif %}
+                    <a href="{{pathurl}}">
+                      {% set imagestyle = {
+                        '#theme':      'image',
+                        '#uri':        item.content['#field_collection_item'].field_image.entity.uri.value ,
+                        '#attributes': { class: 'img-responsive' },
+                      } %}
+                    {% if ratio %}
+                      {% set imagestyle = {
+                        '#theme':      'image_style',
+                        '#style_name': ratio,
+                        '#uri':        item.content['#field_collection_item'].field_image.entity.uri.value ,
+                        '#attributes': { class: 'img-responsive' },
+                      } %}
+                    {% endif %}
+                    
+                      {{ imagestyle }}
+                        <div class="s3-absolute">
+                            <div class="wrap-table">
+                                <div class="wrap-table-inner">
+                                    <div class="grey-bg">
+                                        <h2 class="s3-ts-s text-center">{{ item.content['#field_collection_item'].field_title.value }}</h2>
+                                    </div>
+                                  {% if item.content['#field_collection_item'].field_read_more_link.0.title != '' %}                                  
+                                    <div class="s3-p-4">
+                                        <p class="text-center">
+                                            <span class="btn btn-sm s3-w">
+                                                 {{ readmore }}
+                                                <i class="fa fa-angle-right"></i>
+                                            </span>                                          
+                                        </p>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% else %}
+                      {% set imagestyle = {
+                        '#theme':      'image',
+                        '#uri':        item.content['#field_collection_item'].field_image.entity.uri.value ,
+                        '#attributes': { class: 'img-responsive' },
+                      } %}
+                    {% if ratio %}
+                      {% set imagestyle = {
+                        '#theme':      'image_style',
+                        '#style_name': ratio,
+                        '#uri':        item.content['#field_collection_item'].field_image.entity.uri.value ,
+                        '#attributes': { class: 'img-responsive' },
+                      } %}
+                    {% endif %}
+                    
+                      {{ imagestyle }}
+                      <div class="s3-absolute">
+                            <div class="wrap-table">
+                                <div class="wrap-table-inner">
+                                    <div class="grey-bg">
+                                        <h2 class="s3-ts-s text-center no-link">{{ item.content['#field_collection_item'].field_title.value }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                  
+                {% endif %}
+            </div>
+        </div><!-- {{ i }} of {{ loop.length }} -->
+
+      {% if i is divisible by(3) and loop.last != true %}
+      </div><!-- row promo-image-block -->
+      <div class="row s3-m-8 promo-image-block">
+      {% endif %}
+
+      {% if loop.last == true %}
+      </div><!-- row promo-image-block -->
+      {% endif %}
+
+      {% endfor %}
+    </div>   
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

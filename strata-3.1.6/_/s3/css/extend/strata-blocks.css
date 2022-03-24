@@ -1,0 +1,37 @@
+@media (min-width:768px) {
+	/*.s3-img-block .s3-absolute {position:absolute; top:0; right:14px; bottom:0; left:14px}*/
+	.s3-img-block {
+		background: #161514;
+		margin: 14px 0;
+	}
+
+	.s3-img-block a {
+		color: #fdfcfc;
+	}
+
+	.s3-img-block a:hover {
+		color: #fff;
+	}
+
+	.s3-img-block img {
+		opacity: .7;
+		-webkit-filter: grayscale(30%);
+		-moz-filter:    grayscale(30%);
+		-o-filter:      grayscale(30%);
+		-ms-filter:     grayscale(300%);
+		filter:         grayscale(300%);
+
+		-webkit-transition: all 0.25s ease-in-out;
+		transition: all 0.25s ease-in-out;
+	}
+
+	.s3-img-block:hover img {
+		opacity: 1;
+		-webkit-filter: grayscale(0%);
+		-moz-filter:    grayscale(0%);
+		-o-filter:      grayscale(0%);
+		-ms-filter:     grayscale(0%);
+		filter:         grayscale(0%);
+	}
+
+}

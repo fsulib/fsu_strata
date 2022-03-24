@@ -1,0 +1,696 @@
+<?php
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+function fsu_strata_preprocess_html(&$variables) {
+  $variables['strataversion'] = theme_get_setting('strataversion');
+  if (empty($variables['strataversion'])) {
+    $variables['strataversion'] = '3.1';
+  }
+  $variables['logoselection'] = theme_get_setting('logoselection');
+  if (empty($variables['logoselection'])) {
+    $variables['logoselection'] = 'fsu-seal-3d-160x160';
+  }
+  $variables['color'] = 's3-bg-gt';
+  $variables['colortwo'] = 's3-gt';
+  $variables['colorhead'] = 's3-c';
+  $variables['colorbody'] = 's3-c';
+  $variables['colorfullwidth'] = 's3-w';
+  $variables['colornav'] = 's3-c';
+  $theme_color = theme_get_setting('color');
+  if (!empty($theme_color) && !is_null($theme_color)) {
+    switch ($theme_color) {
+      case 'default':
+        $variables['color'] = 's3-bg-gt';
+        $variables['colortwo'] = 's3-gt';
+        break;
+      case 'default option 1':
+        $variables['color'] = 's3-bg-gt1k';
+        $variables['colortwo'] = 's3-gt1k';
+        break;
+      case 'default option 2':
+        $variables['color'] = 's3-bg-gt2k';
+        $variables['colortwo'] = 's3-gt2k';
+        break;
+      case 'default option 3':
+        $variables['color'] = 's3-bg-gt3k';
+        $variables['colortwo'] = 's3-gt3k';
+        break;
+      case 'garnet1titlenav':
+        $variables['color'] = 's3-bg-gt1k';
+        $variables['colortwo'] = 's3-gt1k';
+        $variables['colorhead'] = 's3-gt';
+        $variables['colornav'] = 's3-gt';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'garnettitlenav':
+        $variables['color'] = 's3-bg-gt';
+        $variables['colortwo'] = 's3-gt';
+        $variables['colorhead'] = 's3-gt';
+        $variables['colornav'] = 's3-gt';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'defaultgarnetheader':
+        $variables['color'] = 's3-bg-gt';
+        $variables['colortwo'] = 's3-gt';
+        $variables['colorhead'] = 's3-gt';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'garnetcanvastitlenav':
+        $variables['color'] = 's3-bg-gt';
+        $variables['colortwo'] = 's3-gt';
+        $variables['colorhead'] = 's3-c';
+        $variables['colornav'] = 's3-gd3c';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'gold':
+        $variables['color'] = 's3-bg-gd';
+        $variables['colortwo'] = 's3-gd';
+        break;
+      case 'goldheader':
+        $variables['color'] = 's3-bg-gd';
+        $variables['colortwo'] = 's3-gd';
+        $variables['colorhead'] = 's3-gd1c';
+        $variables['colornav'] = 's3-gd1c';
+        $variables['colorfullwidth'] = 's3-gd3c';
+        break;
+      case 'goldtitle':
+        $variables['color'] = 's3-bg-gd';
+        $variables['colortwo'] = 's3-gd';
+        $variables['colorhead'] = 's3-gd';
+        $variables['colornav'] = 's3-c';
+        $variables['colorfullwidth'] = 's3-gd3c';
+        break;
+      case 'goldtitlenav':
+        $variables['color'] = 's3-bg-gd';
+        $variables['colortwo'] = 's3-gd';
+        $variables['colorhead'] = 's3-gd';
+        $variables['colornav'] = 's3-gd';
+        $variables['colorfullwidth'] = 's3-gd3c';
+        break;
+      case 'gold option 1':
+        $variables['color'] = 's3-bg-gd1c';
+        $variables['colortwo'] = 's3-gd1c';
+        break;
+      case 'gold option 2':
+        $variables['color'] = 's3-bg-gd2c';
+        $variables['colortwo'] = 's3-gd2c';
+        break;
+      case 'gold option 3':
+        $variables['color'] = 's3-bg-gd3c';
+        $variables['colortwo'] = 's3-gd3c';
+        break;
+      case 'near white':
+        $variables['color'] = 's3-bg-c';
+        $variables['colortwo'] = 's3-c';
+        break;
+      case 'white':
+        $variables['color'] = 's3-bg-w';
+        $variables['colortwo'] = 's3-w';
+        $variables['colorbody'] = 's3-c';
+        break;
+      case 'white option 1':
+        $variables['color'] = 's3-bg-n1w';
+        $variables['colortwo'] = 's3-n1w';
+        break;
+      case 'white option 2':
+        $variables['color'] = 's3-bg-n2w';
+        $variables['colortwo'] = 's3-n2w';
+        break;
+      case 'dark gray':
+        $variables['color'] = 's3-bg-n';
+        $variables['colortwo'] = 's3-n';
+        break;
+      case 'dark gray option 1':
+        $variables['color'] = 's3-bg-n1s';
+        $variables['colortwo'] = 's3-n1s';
+        break;
+      case 'dark gray option 2':
+        $variables['color'] = 's3-bg-n2s';
+        $variables['colortwo'] = 's3-n2s';
+        break;
+      case 'darker gray':
+        $variables['color'] = 's3-bg-s';
+        $variables['colortwo'] = 's3-s';
+        break;
+      case 'slate':
+        $variables['color'] = 's3-bg-s';
+        $variables['colortwo'] = 's3-s';
+        $variables['colorhead'] = 's3-s';
+        $variables['colorfullwidth'] = 's3-bg-w';
+        break;
+      case 'slatetitlenav':
+        $variables['color'] = 's3-bg-s';
+        $variables['colortwo'] = 's3-s';
+        $variables['colorhead'] = 's3-s';
+        $variables['colornav'] = 's3-s';
+        $variables['colorfullwidth'] = 's3-bg-w';
+        break;
+      case 'black':
+        $variables['color'] = 's3-bg-k';
+        $variables['colortwo'] = 's3-k';
+        $variables['colorhead'] = 's3-s';
+        $variables['colornav'] = 's3-s';
+        $variables['colorfullwidth'] = 's3-n2w';
+        break;
+      case 'blackonly':
+        $variables['color'] = 's3-bg-k';
+        $variables['colortwo'] = 's3-k';
+        $variables['colorhead'] = 's3-c';
+        $variables['colornav'] = 's3-c';
+        $variables['colorfullwidth'] = 's3-n2w';
+        break;
+      case 'blacktitle':
+        $variables['color'] = 's3-bg-k';
+        $variables['colortwo'] = 's3-k';
+        $variables['colorhead'] = 's3-k';
+        $variables['colornav'] = 's3-c';
+        $variables['colorfullwidth'] = 's3-n2w';
+        break;
+      case 'blacktitlenav':
+        $variables['color'] = 's3-bg-k';
+        $variables['colortwo'] = 's3-k';
+        $variables['colorhead'] = 's3-k';
+        $variables['colornav'] = 's3-k';
+        $variables['colorfullwidth'] = 's3-n2w';
+        break;
+
+    }
+  }
+
+}
+
+
+function fsu_strata_preprocess_page(&$variables) {
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+  $variables['site_slogan'] = \Drupal::config('system.site')->get('slogan');
+  /* helper function this instead of duplicate? */
+  $variables['strataversion'] = theme_get_setting('strataversion');
+  if (empty($variables['strataversion'])) {
+    $variables['strataversion'] = '3.1';
+  }
+  $variables['logoselection'] = theme_get_setting('logoselection');
+  if (empty($variables['logoselection'])) {
+    $variables['logoselection'] = 'fsu-seal-3d-160x160';
+  }
+  $variables['color'] = 's3-bg-gt';
+  $variables['colortwo'] = 's3-gt';
+  $variables['colorhead'] = 's3-c';
+  $variables['colorbody'] = 's3-w';
+  $variables['colorfullwidth'] = 's3-w';
+  $variables['colornav'] = 's3-c';
+  $theme_color = theme_get_setting('color');
+
+  if (!empty($theme_color) && !is_null($theme_color)) {
+    switch ($theme_color) {
+      case 'default':
+        $variables['color'] = 's3-bg-gt';
+        $variables['colortwo'] = 's3-gt';
+        break;
+      case 'default option 1':
+        $variables['color'] = 's3-bg-gt1k';
+        $variables['colortwo'] = 's3-gt1k';
+        break;
+      case 'default option 2':
+        $variables['color'] = 's3-bg-gt2k';
+        $variables['colortwo'] = 's3-gt2k';
+        break;
+      case 'default option 3':
+        $variables['color'] = 's3-bg-gt3k';
+        $variables['colortwo'] = 's3-gt3k';
+        break;
+      case 'garnet1titlenav':
+        $variables['color'] = 's3-bg-gt1k';
+        $variables['colortwo'] = 's3-gt1k';
+        $variables['colorhead'] = 's3-gt';
+        $variables['colornav'] = 's3-gt';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'garnettitlenav':
+        $variables['color'] = 's3-bg-gt';
+        $variables['colortwo'] = 's3-gt';
+        $variables['colorhead'] = 's3-gt';
+        $variables['colornav'] = 's3-gt';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'defaultgarnetheader':
+        $variables['color'] = 's3-bg-gt';
+        $variables['colortwo'] = 's3-gt';
+        $variables['colorhead'] = 's3-gt';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'garnetcanvastitlenav':
+        $variables['color'] = 's3-bg-gt';
+        $variables['colortwo'] = 's3-gt';
+        $variables['colorhead'] = 's3-c';
+        $variables['colornav'] = 's3-gd3c';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'gold':
+        $variables['color'] = 's3-bg-gd';
+        $variables['colortwo'] = 's3-gd';
+        break;
+      case 'goldheader':
+        $variables['color'] = 's3-bg-gd';
+        $variables['colortwo'] = 's3-gd';
+        $variables['colorhead'] = 's3-gd1c';
+        $variables['colornav'] = 's3-gd1c';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'goldtitle':
+        $variables['color'] = 's3-bg-gd';
+        $variables['colortwo'] = 's3-gd';
+        $variables['colorhead'] = 's3-gd';
+        $variables['colornav'] = 's3-c';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'goldtitlenav':
+        $variables['color'] = 's3-bg-gd';
+        $variables['colortwo'] = 's3-gd';
+        $variables['colorhead'] = 's3-gd';
+        $variables['colornav'] = 's3-gd';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'gold option 1':
+        $variables['color'] = 's3-bg-gd1c';
+        $variables['colortwo'] = 's3-gd1c';
+        break;
+      case 'gold option 2':
+        $variables['color'] = 's3-bg-gd2c';
+        $variables['colortwo'] = 's3-gd2c';
+        break;
+      case 'gold option 3':
+        $variables['color'] = 's3-bg-gd3c';
+        $variables['colortwo'] = 's3-gd3c';
+        break;
+      case 'near white':
+        $variables['color'] = 's3-bg-c';
+        $variables['colortwo'] = 's3-c';
+        break;
+      case 'white':
+        $variables['color'] = 's3-bg-w';
+        $variables['colortwo'] = 's3-w';
+        $variables['colorbody'] = 's3-c';
+        $variables['colorfullwidth'] = 's3-c';
+        break;
+      case 'white option 1':
+        $variables['color'] = 's3-bg-n1w';
+        $variables['colortwo'] = 's3-n1w';
+        break;
+      case 'white option 2':
+        $variables['color'] = 's3-bg-n2w';
+        $variables['colortwo'] = 's3-n2w';
+        break;
+      case 'dark gray':
+        $variables['color'] = 's3-bg-n';
+        $variables['colortwo'] = 's3-n';
+        break;
+      case 'dark gray option 1':
+        $variables['color'] = 's3-bg-n1s';
+        $variables['colortwo'] = 's3-n1s';
+        break;
+      case 'dark gray option 2':
+        $variables['color'] = 's3-bg-n2s';
+        $variables['colortwo'] = 's3-n2s';
+        break;
+      case 'darker gray':
+        $variables['color'] = 's3-bg-s';
+        $variables['colortwo'] = 's3-s';
+        break;
+      case 'slate':
+        $variables['color'] = 's3-bg-s';
+        $variables['colortwo'] = 's3-s';
+        $variables['colorhead'] = 's3-s';
+        $variables['colorfullwidth'] = 's3-bg-w';
+        break;
+      case 'slatetitlenav':
+        $variables['color'] = 's3-bg-s';
+        $variables['colortwo'] = 's3-s';
+        $variables['colorhead'] = 's3-s';
+        $variables['colornav'] = 's3-s';
+        $variables['colorfullwidth'] = 's3-bg-w';
+        break;
+      case 'black':
+        $variables['color'] = 's3-bg-k';
+        $variables['colortwo'] = 's3-k';
+        $variables['colorhead'] = 's3-s';
+        $variables['colornav'] = 's3-s';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'blackonly':
+        $variables['color'] = 's3-bg-k';
+        $variables['colortwo'] = 's3-k';
+        $variables['colorhead'] = 's3-c';
+        $variables['colornav'] = 's3-c';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'blacktitle':
+        $variables['color'] = 's3-bg-k';
+        $variables['colortwo'] = 's3-k';
+        $variables['colorhead'] = 's3-k';
+        $variables['colornav'] = 's3-c';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+      case 'blacktitlenav':
+        $variables['color'] = 's3-bg-k';
+        $variables['colortwo'] = 's3-k';
+        $variables['colorhead'] = 's3-k';
+        $variables['colornav'] = 's3-k';
+        $variables['colorfullwidth'] = 's3-w';
+        break;
+    }
+  }
+  $variables['locationname'] = theme_get_setting('locationname');
+  $variables['locationaddress'] = theme_get_setting('locationaddress');
+  $variables['locationcity'] = theme_get_setting('locationcity');
+  $variables['locationstate'] = theme_get_setting('locationstate');
+  $variables['locationpostalcode'] = theme_get_setting('locationpostalcode');
+  $variables['locationlat'] = theme_get_setting('locationlat');
+  $variables['locationlon'] = theme_get_setting('locationlon');
+  $variables['footertextone'] = theme_get_setting('footertextone')['value'];
+  $variables['footertexttwo'] = theme_get_setting('footertexttwo')['value'];
+  $variables['maptext'] = theme_get_setting('maptext')['value'];
+  $variables['twitterfeed'] = theme_get_setting('twitterfeed')['value'];
+  $variables['twitter'] = theme_get_setting('strata_twitter');
+  $variables['facebook'] = theme_get_setting('strata_facebook');
+  $variables['instagram'] = theme_get_setting('strata_instagram');
+  $variables['youtube'] = theme_get_setting('strata_youtube');
+  $variables['linkedin'] = theme_get_setting('strata_linkedin');
+  $variables['overrideaddress'] = theme_get_setting('overrideaddress')['value'];
+
+  //create string of location details
+  $variables['googlemap'] = '';
+  $variables['googlemapsmall'] = '';
+  $map_location = '';
+  if (!empty($variables['locationname'])) {
+    $map_location .= $variables['locationname'];
+  }
+  if (!empty($variables['locationaddress'])) {
+    $map_location .= ' ' . $variables['locationaddress'];
+  }
+  if (!empty($variables['locationcity'])) {
+    $map_location .= ' ' . $variables['locationcity'];
+  }
+  if (!empty($variables['locationstate'])) {
+    $map_location .= ' ' . $variables['locationstate'];
+  }
+  if (!empty($variables['locationpostalcode'])) {
+    $map_location .= ' ' . $variables['locationpostalcode'];
+  }
+  if (!empty($variables['locationlat']) && !empty($variables['locationlon'])) {
+    if (!empty($map_location)) {
+      $map_location .= '&center=';
+    }
+    $map_location .= $variables['locationlat'] . ',' . $variables['locationlon'];
+
+  }
+  $variables['googlemap'] = '<iframe width="500" height="300" src="https://www.google.com/maps/embed/v1/place?q=' . $map_location . '
+      &zoom=13
+      &attribution_source=Google+Maps+Embed+API
+      &attribution_web_url=https://developers.google.com/maps/documentation/embed/
+      &key=API_KEY">
+  </iframe>';
+  $variables['googlemapsmall'] = '<iframe width="300" height="200" src="https://www.google.com/maps/embed/v1/place?q=' . $map_location . '
+      &zoom=13
+      &attribution_source=Google+Maps+Embed+API
+      &attribution_web_url=https://developers.google.com/maps/documentation/embed/
+      &key=API_KEY">
+  </iframe>';
+  $variables['maplocation'] = $map_location;
+
+
+}
+
+/*
+function fsu_strata_preprocess_block(&$variables) {
+
+}
+*/
+
+
+/**
+ * Implements hook_preprocess_menu_link().
+ */
+/*
+function fsu_strata_preprocess_menu_link(&$variables, $hook) {
+}
+*/
+/****** ****/
+/**
+ * Implements hook_form_system_theme_settings_alter() function.
+ */
+function fsu_strata_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id = NULL) {
+  // Work-around for a core bug affecting admin themes. See issue #943212.
+  if (isset($form_id)) {
+    return;
+  }
+
+  // Create the form using Forms API
+  $form['color'] = [
+    '#type' => 'select',
+    '#title' => t('Color Theme'),
+    '#default_value' => theme_get_setting('color'),
+    '#options' => [
+      'default' => t('Garnet (#782f40)'),
+      'default option 1' => t('Garnet +1 Black (#5f2835)'),
+      'garnet1titlenav' => t('Garnet +1 Black with Garnet Title & Navigation'),
+      'default option 2' => t('Garnet +2 Black (#47222a)'),
+      'default option 3' => t('Garnet +3 Black (#2f1c1f)'),
+      'defaultgarnetheader' => t('Garnet with Garnet Title (#782f40)'),
+      'garnettitlenav' => t('Garnet with Garnet Title and Navigation'),
+      'garnetcanvastitlenav' => t('Garnet with Canvas Title & Gold +3 Canvas Navigation'),
+      'gold' => t('Gold (#CEB888)'),
+      'goldtitle' => t('Gold with Gold Title'),
+      'goldtitlenav' => t('Gold with Gold  Title & Navigation'),
+      'goldheader' => t('Gold with Gold +1 Title & Navigation'),
+      'gold option 1' => t('Gold +1 Canvas (#dacaa6)'),
+      'gold option 2' => t('Gold +2 Canvas (#e7dcc4)'),
+      'gold option 3' => t('Gold +3 Canvas (#f3ede1)'),
+      'near white' => t('Canvas (#fdfcfc)'),
+      'white' => t('White (#f4f4f4)'),
+      'white option 1' => t('Neutral +1 White (#b5b5b4)'),
+      'white option 2' => t('Neutral +2 White (#d5d4d4)'),
+      'dark gray' => t('Neutral (#969594)'),
+      'dark gray option 1' => t('Neutral +1 Slate (#767474)'),
+      'dark gray option 2' => t('Neutral +2 Slate (#565554)'),
+      'darker gray' => t('Slate (#2c2a29)'),
+      'slate' => t('Slate with Slate Title (#2c2a29)'),
+      'slatetitlenav' => t('Slate with Slate Title & Navigation'),
+      'black' => t('Black with Slate Title & Navigation'),
+      'blackonly' => t('Black'),
+      'blacktitle' => t('Black with Black Title'),
+      'blacktitlenav' => t('Black with Black Title & Navigation'),
+    ],
+  ];
+  $form['strataversion'] = [
+    '#type' => 'select',
+    '#title' => t('Strata Theme Version'),
+    '#description' => t('<a target="new" href="https://webstyle.unicomm.fsu.edu/3.3/">Strata Theme Information</a>'),
+    '#default_value' => theme_get_setting('strataversion'),
+    '#options' => [
+      '3.1' => t('3.1'),
+      '3.1.6' => t('3.1.6'),
+      '3.3.9' => t('3.3.9'),
+    ],
+  ];
+  $form['logoselection'] = [
+    '#type' => 'select',
+    '#title' => t('FSU Logo'),
+    '#default_value' => theme_get_setting('logoselection'),
+    '#options' => [
+      'fsu-seal-3d-160x160' => t('FSU 3D 160x160'),
+      'fsu-seal-black-160x160' => t('FSU Black 160x160'),
+      'fsu-seal-full-160x160' => t('FSU Full 160x160'),
+      'fsu-seal-garnet-160x160' => t('FSU Garnet 160x160'),
+      'fsu-seal-gd-500x500' => t('FSU GD 500x500'),
+      'fsu-seal-gold-160x160' => t('FSU Gold 160x160'),
+      'fsu-seal-gt-500x500' => t('FSU GT 500x500'),
+    ],
+  ];
+  $form['strata_twitter'] = [
+    '#type' => 'textfield',
+    '#title' => t('Twitter URL for your site footer like http://www.twitter.com/something'),
+    '#default_value' => theme_get_setting('strata_twitter'),
+  ];
+  $form['strata_facebook'] = [
+    '#type' => 'textfield',
+    '#title' => t('Facebook URL for site footer like http://www.facebook.com/something'),
+    '#default_value' => theme_get_setting('strata_facebook'),
+  ];
+  $form['strata_instagram'] = [
+    '#type' => 'textfield',
+    '#title' => t('instagram URL for site footer like http://www.instagram.com/something'),
+    '#default_value' => theme_get_setting('strata_instagram'),
+  ];
+  $form['strata_youtube'] = [
+    '#type' => 'textfield',
+    '#title' => t('YouTube URL for site footer like http://www.youtube.com/something'),
+    '#default_value' => theme_get_setting('strata_youtube'),
+  ];
+  $form['strata_linkedin'] = [
+    '#type' => 'textfield',
+    '#title' => t('LinkedIn URL for site footer like http://www.linkedin.com/something'),
+    '#default_value' => theme_get_setting('strata_linkedin'),
+  ];
+  $form['locationname'] = [
+    '#type' => 'textfield',
+    '#title' => t('Location Name for Map'),
+    '#default_value' => theme_get_setting('locationname'),
+  ];
+  $form['locationaddress'] = [
+    '#type' => 'textfield',
+    '#title' => t('Map Location Address (1234 State Street)'),
+    '#default_value' => theme_get_setting('locationaddress'),
+  ];
+  $form['locationcity'] = [
+    '#type' => 'textfield',
+    '#title' => t('City'),
+    '#default_value' => theme_get_setting('locationcity'),
+  ];
+  $form['locationstate'] = [
+    '#type' => 'textfield',
+    '#title' => t('State'),
+    '#default_value' => theme_get_setting('locationstate'),
+  ];
+  $form['locationpostalcode'] = [
+    '#type' => 'textfield',
+    '#title' => t('Postal Code'),
+    '#default_value' => theme_get_setting('locationpostalcode'),
+  ];
+  $form['locationlat'] = [
+    '#type' => 'textfield',
+    '#title' => t('Map Location Latitude'),
+    '#default_value' => theme_get_setting('locationlat'),
+  ];
+  $form['locationlon'] = [
+    '#type' => 'textfield',
+    '#title' => t('Map Location Longitude'),
+    '#default_value' => theme_get_setting('locationlon'),
+  ];
+  $form['overrideaddress'] = [
+    '#type' => 'text_format',
+    '#title' => t('Override footer address'),
+    '#default_value' => theme_get_setting('overrideaddress')['value'],
+    '#description' => t('If entered, this content will replace default footer address.'),
+    '#format' => 'full_html',
+  ];
+  $form['footertextone'] = [
+    '#type' => 'text_format',
+    '#title' => t('Add some text to footer.'),
+    '#default_value' => theme_get_setting('footertextone')['value'],
+    '#description' => t('Add some information to the footer.'),
+    '#format' => 'full_html',
+  ];
+
+  $form['footertexttwo'] = [
+    '#type' => 'text_format',
+    '#title' => t('Add some text to the footer, second paragraph'),
+    '#default_value' => theme_get_setting('footertexttwo')['value'],
+    '#description' => t('Add some information to the left of the map on the footer.'),
+    '#format' => 'full_html',
+  ];
+
+  $form['maptext'] = [
+    '#type' => 'text_format',
+    '#title' => t('Add some text to the right, third paragraph'),
+    '#default_value' => theme_get_setting('maptext')['value'],
+    '#format' => 'full_html',
+    '#description' => t('Put your location information or details next to the map. or more details'),
+  ];
+  $form['twitterfeed'] = [
+    '#type' => 'text_format',
+    '#title' => t('Add your Facebook or Twitter widget to the footer'),
+    '#default_value' => theme_get_setting('twitterfeed')['value'],
+    '#format' => 'full_html',
+    '#description' => t('Click "Source" and add your embed code provided by Facebook (https://developers.facebook.com/docs/plugins/page-plugin/) or twitter (https://dev.twitter.com/web/overview) The facebook embed code it asks to put in the body is already installed. NOTE: If asked for width and height set to 500 wide by 300 high.'),
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ *
+ * @param array $suggestions
+ * @param array $variables
+ */
+function fsu_strata_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ *
+ */
+function fsu_strata_preprocess_field(&$variables, $hook) {
+
+  // brathbone - 5/6/2020 See https://app.asana.com/0/1125207435915432/1165871983332681/f
+  // Adding classes to link fields in paragraph types
+  $element = $variables['element'];
+  if ($element['#field_name'] === 'field_button_left') {
+    foreach ($variables['items'] as $key => $value) {
+      $variables['items'][$key]['content']['#options']['attributes']['class'][] = 'button_garnet_left';
+    }
+  }
+  if ($element['#field_name'] === 'field_buttons_centered') {
+    foreach ($variables['items'] as $key => $value) {
+      $variables['items'][$key]['content']['#options']['attributes']['class'][] = 'button_garnet_auto';
+    }
+  }
+  if ($element['#field_name'] === 'field_button') {
+    $variables['items'][0]['content']['#options']['attributes']['class'][] = 'button_garnet';
+    foreach ($variables['items'] as $key => $value) {
+      $variables['items'][$key]['content']['#options']['attributes']['class'][] = 'button_garnet';
+    }
+  }
+
+}
+
+
+/**
+ * Implements hook_library_info_alter
+ *
+ * @param $libraries
+ * @param $extension
+ */
+function fsu_strata_library_info_alter(&$libraries, $extension) {
+  // Update strata version.
+  if ($extension == 'fsu_strata') {
+    // Get version of style
+    $strataversion = theme_get_setting('strataversion');
+    if (empty($strataversion)) {
+      // Set default version.
+      $strataversion = '3.1';
+    }
+
+    // Change css.
+    if (isset($libraries['global-styling']) &&
+      isset($libraries['global-styling']['css']['theme'])) {
+      foreach ($libraries['global-styling']['css']['theme'] as $key => $css) {
+        if (strpos($key, '{strataversion}')) {
+          $_key = str_replace('{strataversion}', $strataversion, $key);
+          if (file_exists(__DIR__ . '/' . $_key)) {
+            $libraries['global-styling']['css']['theme'][$_key] = $css;
+          }
+          unset($libraries['global-styling']['css']['theme'][$key]);
+        }
+      }
+    }
+    // Change js.
+    if (isset($libraries['theme']) && isset($libraries['theme']['js'])) {
+      foreach ($libraries['theme']['js'] as $jskey => $js) {
+        if (strpos($jskey, '{strataversion}')) {
+          $_jskey = str_replace('{strataversion}', $strataversion, $jskey);
+          if (file_exists(__DIR__ . '/' . $_jskey)) {
+            $libraries['theme']['js'][$_jskey] = $js;
+          }
+          unset($libraries['theme']['js'][$jskey]);
+        }
+      }
+    }
+  }
+}

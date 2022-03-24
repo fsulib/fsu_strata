@@ -1,0 +1,53 @@
+.table-striped>tbody>tr:nth-of-type(odd),
+.s3-c .table-striped>tbody>tr:nth-of-type(odd)    {background-color:#f3f2f2}
+.s3-w .table-striped>tbody>tr:nth-of-type(odd)    {background-color:#e5e5e5}
+.s3-n2w .table-striped>tbody>tr:nth-of-type(odd)  {background-color:#c8c8c8}
+.s3-n1w .table-striped>tbody>tr:nth-of-type(odd)  {background-color:#a8a7a7}
+.s3-n .table-striped>tbody>tr:nth-of-type(odd)    {background-color:#898887}
+.s3-n1s .table-striped>tbody>tr:nth-of-type(odd)  {background-color:#696867}
+.s3-n2s .table-striped>tbody>tr:nth-of-type(odd)  {background-color:#4a4847}
+.s3-s .table-striped>tbody>tr:nth-of-type(odd)    {background-color:#292726}
+.s3-k .table-striped>tbody>tr:nth-of-type(odd)    {background-color:#141312}
+.s3-gt .table-striped>tbody>tr:nth-of-type(odd)   {background-color:#6c2c3b}
+.s3-gt1k .table-striped>tbody>tr:nth-of-type(odd) {background-color:#542530}
+.s3-gt2k .table-striped>tbody>tr:nth-of-type(odd) {background-color:#3b1f25}
+.s3-gt3k .table-striped>tbody>tr:nth-of-type(odd) {background-color:#23181a}
+.s3-gd .table-striped>tbody>tr:nth-of-type(odd)   {background-color:#c3ae81}
+.s3-gd1c .table-striped>tbody>tr:nth-of-type(odd) {background-color:#d4c197}
+.s3-gd2c .table-striped>tbody>tr:nth-of-type(odd) {background-color:#e1d3b5}
+.s3-gd3c .table-striped>tbody>tr:nth-of-type(odd) {background-color:#ede5d3}
+
+.s3-c .table tr>th,
+.s3-c .table tr>td {border-color:#fff}
+.s3-w .table tr>th,
+.s3-w .table tr>td {border-color:#fbfbfb}
+.s3-n2w .table tr>th,
+.s3-n2w .table tr>td {border-color:#dbdbdb}
+.s3-n1w .table tr>th,
+.s3-n1w .table tr>td {border-color:#bbbbba}
+.s3-n .table tr>th,
+.s3-n .table tr>td {border-color:#9c9b9a}
+.s3-n1s .table tr>th,
+.s3-n1s .table tr>td {border-color:#7c7b7a}
+.s3-n2s .table tr>th,
+.s3-n2s .table tr>td {border-color:#5d5b5b}
+.s3-s .table tr>th,
+.s3-s .table tr>td {border-color:#333130}
+.s3-k .table tr>th,
+.s3-k .table tr>td {border-color:#1d1c1b}
+.s3-gt .table tr>th,
+.s3-gt .table tr>td {border-color:#7c3546}
+.s3-gt1k .table tr>th,
+.s3-gt1k .table tr>td {border-color:#662a38}
+.s3-gt2k .table tr>th,
+.s3-gt2k .table tr>td {border-color:#4d242d}
+.s3-gt3k .table tr>th,
+.s3-gt3k .table tr>td {border-color:#3a1f24}
+.s3-gd .table tr>th,
+.s3-gd .table tr>td {border-color:#d1bc8f}
+.s3-gd1c .table tr>th,
+.s3-gd1c .table tr>td {border-color:#ddcead}
+.s3-gd2c .table tr>th,
+.s3-gd2c .table tr>td {border-color:#e9e0cb}
+.s3-gd3c .table tr>th,
+.s3-gd3c .table tr>td {border-color:#f6f2e9}

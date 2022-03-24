@@ -1,0 +1,49 @@
+{% block content %}
+    {{ content|without('field_color','field_body','field_image','field_fwti_image_ratio') }}
+    {% set color = content.field_color['#items'].getValue() %}
+
+
+    {% set fileuri = content.field_image['#items'].entity.getFileUri() %}
+
+
+    {% if content.field_fwti_image_ratio['#items'].getValue() %}
+        {% set ratio_field = content.field_fwti_image_ratio['#items'].getValue() %}
+        {% set ratio = ratio_field.0.value %}
+    {% endif %}
+
+    {% if ratio is not empty %}
+        {% set image_object = image_style(content.field_image['#items'].entity.fid.value, [ratio]) %}
+        {% set image_path = image_object[ratio] %}
+    {% endif %}
+    {% set blockclass = 'block' %}
+<div {{ attributes.addClass(blockclass) }} >
+    {{ title_prefix }}
+    {% if label %}
+        <h2{{ title_attributes }}>{{ label }}</h2>
+    {% endif %}
+    {{ title_suffix }}
+
+    {% if color != '' %}
+    <div class="s3-{{ color.0.value }} block s3-m-8 full-with-image">
+    {% else %}
+    <div class="block s3-m-8 full-with-image">
+    {% endif %}
+    <div class="row">
+        {% if fileuri %}
+            <div class="col-xs-12 col-sm-8">
+                {% if ratio is not empty %}
+                    <img class="img-responsive full_width" alt="" src="{{ image_path }}">
+                {% else %}
+                    <img class="img-responsive" src="{{ file_url(content.field_image['#items'].entity.getFileUri()) }}">
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if content.field_body %}
+            <div class="col-xs-12 col-sm-4 ftwi">
+                {{ content.field_body }}
+            </div>
+        {% endif %}
+    </div>
+    </div>
+    </div>
+{% endblock %}

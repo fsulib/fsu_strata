@@ -1,0 +1,210 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+
+  set classes = [
+    'field',
+    'field--item',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set row_classes = [
+    'field',
+    'field--items',
+    'row',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+{%
+  set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'sr-only',
+  ]
+%}
+
+{% if label_hidden %}
+  {% if multiple %}
+  <div class="row row--slider-by-halves">
+    <div class="col-xs-12 col-xs-12--slider-by-halves">
+    <div class="flexslider slider-slide">
+      <ul class="slides slides--slider-by-halves">
+      {% for item in items %}
+        {% if item.content['#field_collection_item'].field_link.0.title != '' %}
+          {% set readmore = item.content['#field_collection_item'].field_link.0.title%}
+        {% else %}
+          {% set readmore = 'Read More'%}
+        {% endif %}
+
+        {% if 'http://' in item.content['#field_collection_item'].field_link.0.uri or 'https://' in item.content['#field_collection_item'].field_link.0.uri%}
+          {% set pathurl = item.content['#field_collection_item'].field_link.0.uri %}
+        {% else %}
+          {% set iurl = item.content['#field_collection_item'].field_link.0.uri|split(':')%}
+          {% set pathurl = file_url(iurl|last) %}
+        {% endif %}
+        {% if loop.index is divisibleby(2) %}
+
+              {%
+                set content_class = content_class|slice(start, length - 1)
+              %}
+
+
+          {% endif %}
+
+          {% if item.content['#field_collection_item'].field_color.value != '' %}
+            {% set color_class = item.content['#field_collection_item'].field_color.value%}
+          {% else %}
+            {% set color_class = ''%}
+          {% endif %}
+          
+          {% if item.content['#field_collection_item'].field_pointer_position.value != ''%}
+            {% set pointer_position = item.content['#field_collection_item'].field_pointer_position.value %}
+          {% else %}
+            {% set pointer_position = ''%}
+          {% endif %}       
+          
+          {% if pointer_position == 'right' %}
+            {%
+              set img_class = ['col-md-6','s3-p-0']
+            %}
+            {%
+              set content_class = ['col-md-6', 's3-p-0', 'fixed-3-2-col-6']
+            %}
+          {% elseif pointer_position == 'left' %}
+            {%
+              set img_class = ['col-md-6','s3-p-0', 'col-md-push-6']
+            %}
+            {%
+              set content_class = ['col-md-6', 's3-p-0', 'fixed-3-2-col-6', 'col-md-pull-6']
+            %}  
+                        
+          {% endif %}
+          
+          {% if (pointer_position != 'left') and (pointer_position != 'right')  %}
+            {%
+              set img_class = ['col-md-6','s3-p-0']
+            %}
+            {%
+              set content_class = ['col-md-6', 's3-p-0', 'fixed-3-2-col-6']
+            %}
+            {% if loop.index is divisibleby(2) %}
+                  {%
+                    set img_class = img_class|merge(['col-md-push-6'])
+                  %}
+                  {%
+                    set content_class = content_class|slice(start, length - 1)
+                  %}
+    
+                  {%
+                    set content_class = content_class|merge(['col-md-pull-6','s3-gd'])
+                  %}
+              {% endif %}            
+          {% endif %}
+          {% set imagestyle = {
+            '#theme':      'image_style',
+            '#style_name': '570x380',
+            '#uri':        item.content['#field_collection_item'].field_slider_image[0].entity.uri.value ,
+            '#attributes': { class: 'img-responsive' },
+          } %}
+
+        <li class="{{ color_class }}">
+          <div class="col-sm-12 col-sm-12--slider-by-halves">
+            <div class="row">
+              {% if item.content['#field_collection_item'].field_slider_image[0].entity.uri.value %}
+              <div class="{{ img_class|join(' ') }}">
+                 {% if item.content['#field_collection_item'].field_link.uri %}
+                    <a href="{{pathurl}}">{{ imagestyle }}</a>
+                  {% else %}
+                    {{ imagestyle }}
+                  {% endif %}
+
+              </div>
+              {% endif %}
+              <div class="{{ content_class|join(' ') }} s3-{{ color_class }}" style="overflow-y: hidden">
+                <div class="wrap-table wrap-table--slider-by-halves">
+                  <div class="wrap-table-inner s3-p-10 s3-p-10--slider-by-halves  s3-{{color_class}}">
+                    {% if item.content['#field_collection_item'].field_title.value %}
+                    <h1 class="s3-fs-xs-4 s3-fs-sm-4 s3-fs-md-4 s3-fs-lg-5">
+                      {{item.content['#field_collection_item'].field_title.value}}
+                    </h1>
+                    {% endif %}
+                    {% if item.content['#field_collection_item'].field_slider_text.value %}
+                      {% set bodytxt = item.content['#field_collection_item'].field_slider_text.value %}
+                      <p>{{ bodytxt|replace({'<p>': "<p class='s3-fs-md-1'>"}) |raw}}</p>
+                    {% endif %}
+                    {% if item.content['#field_collection_item'].field_link.uri != '' and  item.content['#field_collection_item'].field_link.0.title != ''%}
+                    <a href="{{pathurl}}">{{ readmore }} <i class="fa fa-chevron-right"></i></a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

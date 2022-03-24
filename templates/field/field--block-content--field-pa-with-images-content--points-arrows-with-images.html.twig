@@ -1,0 +1,257 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+
+  set classes = [
+    'field',
+    'field--item',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set row_classes = [
+    'field',
+    'field--items',
+    'row',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+{%
+  set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'sr-only',
+  ]
+%}
+{% set colors = element['#object'].field_promo_background_color.value|split('.') %}
+{% set arrowcolor = colors|last|split('-') %}
+<!-- {% set ratio = 'three_into_two_ratio' %} -->
+{% if element['#object'].field_pa_image_ratio.value %}
+  {%
+    set ratio = element['#object'].field_pa_image_ratio.value
+  %}
+{% else %}
+  {% set ratio = 'three_into_two_ratio' %}
+{% endif %}
+
+{% if items|length == 1 %}
+  {% set col_class = 'col-sm-12' %}
+{% endif %}
+
+{% if items|length == 2 %}
+  {% set col_class = 'col-sm-6' %}
+{% endif %}
+
+{% if items|length == 3 %}
+  {% set col_class = 'col-sm-4' %}
+{% endif %}
+
+{% if items|length == 4 %}
+  {% set col_class = 'col-sm-3' %}
+{% endif %}
+
+
+{% if label_hidden %}
+  {% if multiple %}
+    {% if colors|first != '' %}
+        <div class="s3-m-4 s3-p-10 promo-image-block {{colors|first}} ">
+         
+        {% else %}
+          <div class="s3-m-10">
+        {% endif %}
+        <div class="row">
+          {% for item in items %}
+            {% if ratio != 'round' %}
+                {% if ratio is not empty %}
+                    {% set image_object = image_style(item.content['#field_collection_item'].field_image.entity.fid.value, [ratio]) %}
+                    {% set image_path = image_object[ratio] %}
+                {% else %}
+                  {% set image_object = image_style(item.content['#field_collection_item'].field_image.entity.fid.value, [ratio]) %}
+                  {% set image_path = image_object[ratio] %}
+                {% endif %}
+            {% endif %}
+            
+
+            {% if element['#object'].field_title_size.value != '' %}
+              {% if element['#object'].field_title_size.value == 'small' %}
+                {% set title_class = "s3-fs-sm-3 s3-fs-lg-3" %}
+            {% endif %}
+              {% if element['#object'].field_title_size.value == 'large' %}
+                {% set title_class = "s3-fs-sm-3" %}
+            {% endif %}
+            {% else %}
+              {% set title_class = 'h5' %}
+            {% endif %}
+            
+            {% if element['#object'].field_read_more_link_size.value != '' %}
+              {% if element['#object'].field_read_more_link_size.value == 'small' %}
+                {% set link_class = "s3-fs-sm-2" %}
+            {% endif %}
+              {% if element['#object'].field_read_more_link_size.value == 'large' %}
+                {% set link_class = "h4 s3-fs-sm-2" %}
+            {% endif %}
+            {% else %}
+              {% set link_class = 's3-fs-sm-2' %}
+            {% endif %}
+            
+
+                {% if item.content['#field_collection_item'].field_read_more_link.0.title != '' %}
+                  {% set readmore = item.content['#field_collection_item'].field_read_more_link.0.title%}
+                {% else %}
+                  {% set readmore = 'Read More'%}
+                {% endif %}
+                {% if 'http://' in item.content['#field_collection_item'].field_read_more_link.0.uri or 'https://' in item.content['#field_collection_item'].field_read_more_link.0.uri%}
+                  {% set pathurl = item.content['#field_collection_item'].field_read_more_link.0.uri %}
+                {% else %}
+                  {% set iurl = item.content['#field_collection_item'].field_read_more_link.0.uri|split(':')%}
+                  {% set pathurl = base_path ~ iurl|last %}
+                {% endif %}
+              <div class="{{ col_class }}">
+                      {% if element['#object'].field_color.value != '' %}
+                        
+                        {% if colors|first != '' %}
+                          <div class=" {{ colors|last }} feature-fixed feature-fixed-1 fullimg">
+                        {% else %}
+                          <div class=" s3-{{  element['#object'].field_color.value }} feature-fixed feature-fixed-1 fullimg">                          
+                        {% endif %}
+                        
+                      {% else %}
+                        
+                        {% if colors|first != '' %}
+                             <div class="s3-m-4 promo-image-block {{ colors|last }} fullimg">
+                        {% else %}
+                          <div class="s3-m-4 promo-image-block s3-gd2c fullimg">
+                        {% endif %}
+                        
+                    {% endif %}
+                  {% if ratio == 'round' %}
+                      <img class="img-responsive img-expand img-circle" src="{{ file_url(item.content['#field_collection_item'].field_image.entity.uri.value) }}"></a>
+                    {% else %}
+                      <img class="img-responsive" alt="" src="{{ image_path }}">
+                    {% endif %}
+                    <div class="s3-p-10">
+                      <h3 class="{{ title_class }}">{{ item.content['#field_collection_item'].field_title.value }}</h3>
+                      <p class="s3-fs-sm-1">{{ item.content['#field_collection_item'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}</p>
+                      <p class="{{ link_class }}">
+                        {% if pathurl != '' %}
+                        <a href="{{pathurl}}">{{ readmore }} <i class="fa fa-chevron-right"></i></a>
+                      {% endif %}
+                      </p>
+                    </div>
+                  </div>
+
+                  {% if element['#object'].field_style.value == 'points' %}
+                     
+                    {% if element['#object'].field_color.value != '' %}
+
+                  
+                      {% if colors|first != '' %}
+                        <img class="img-responsive" src="//www.fsu.edu/_/s3/img/point/point-{{ arrowcolor|last }}.png" alt="">                            
+                      {% else %}
+                        <img class="img-responsive" src="//www.fsu.edu/_/s3/img/point/point-{{  element['#object'].field_color.value }}.png" alt="">                          
+                      {% endif %}
+                        
+                    {% else %}
+                        
+                      {% if colors|first != '' %}
+                        <img class="img-responsive " src="//www.fsu.edu/_/s3/img/point/point-{{ arrowcolor|last }}.png" alt="">
+                      {% else %}
+                        <img class="img-responsive" src="//www.fsu.edu/_/s3/img/point/point-gd2c.png" alt="">
+                      {% endif %}
+                      
+                    {% endif %}
+                  
+                  {% endif %}
+                
+                
+                {% if element['#object'].field_style.value == 'arrows' %}
+                    
+                    
+                    {% if element['#object'].field_color.value != '' %}
+
+                  
+                      {% if colors|first != '' %}
+                        <img class="img-responsive" src="//www.fsu.edu/_/s3/img/arrow/arrow-{{ arrowcolor|last }}.png" alt="">                            
+                      {% else %}
+                        <img class="img-responsive" src="//www.fsu.edu/_/s3/img/arrow/arrow-{{  element['#object'].field_color.value }}.png" alt="">                          
+                      {% endif %}
+                        
+                    {% else %}
+                        
+                      {% if colors|first != '' %}
+                        <img class="img-responsive" src="//www.fsu.edu/_/s3/img/arrow/arrow-{{ arrowcolor|last }}.png" alt="">
+                      {% else %}
+                        <img class="img-responsive" src="//www.fsu.edu/_/s3/img/arrow/arrow-gd2c.png" alt="">
+                      {% endif %}
+                      
+                    {% endif %}                    
+                    
+                    
+                    
+                {% endif %}
+                
+                  <br class="visible-xs">
+                </div>             
+          {% endfor %}
+        </div>
+      </div>   
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

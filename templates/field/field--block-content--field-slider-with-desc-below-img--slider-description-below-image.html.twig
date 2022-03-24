@@ -1,0 +1,161 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+
+  set classes = [
+    'field',
+    'field--item',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set row_classes = [
+    'field',
+    'field--items',
+    'row',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+{%
+  set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'sr-only',
+  ]
+%}
+
+ {% set colors = element['#object'].field_color.value %}
+
+{%
+  set color_classes = [
+    'slides',
+    's3-' ~ colors,
+  ]
+%}
+
+
+{% if label_hidden %}
+  {% if multiple %}
+<div class="row description_below row--slider-desc-below">
+  <div class="col-xs-12">
+    <div class="flexslider slider-fade-full">
+      <ul {{ attributes.addClass(color_classes) }}>
+          {% for item in items %}
+             {% if item.content['#field_collection_item'].field_link.0.title != '' %}
+              {% set readmore = item.content['#field_collection_item'].field_link.0.title%}
+            {% else %}
+            {% endif %}
+            {% if 'http://' in item.content['#field_collection_item'].field_link.0.uri or 'https://' in item.content['#field_collection_item'].field_link.0.uri%}
+              {% set pathurl = item.content['#field_collection_item'].field_link.0.uri %}
+            {% else %}
+              {% set iurl = item.content['#field_collection_item'].field_link.0.uri|split(':')%}
+              {% set pathurl = file_url(iurl|last) %}
+            {% endif %}
+
+            {% if item.content['#field_collection_item'].field_title.value is empty and item.content['#field_collection_item'].field_text.value is empty and item.content['#field_collection_item'].field_link.0.uri is empty%}
+              {% set li_class = 'nobg' %}
+            {% else %}
+              {% set li_class = 'bg' %}
+            {% endif %}
+
+        {% if item.content['#field_collection_item'].field_color.value != '' %}
+          {% set color_class = item.content['#field_collection_item'].field_color.value%}
+        {% else %}
+          {% set color_class = 'nts'%}
+        {% endif %}
+            <li class="{{ li_class }} s3-{{ color_class }}">
+            {% if item.content['#field_collection_item'].field_slider_image[0].entity.uri.value %}
+              {% if item.content['#field_collection_item'].field_link.uri %}
+                <a href="{{pathurl}}">
+                  <img src="{{ file_url(item.content['#field_collection_item'].field_slider_image[0].entity.uri.value) }}" alt="{{item.content['#field_collection_item'].field_slider_image.alt}}" class="img-responsive" />
+                </a>
+              {% else %}
+                <img src="{{ file_url(item.content['#field_collection_item'].field_slider_image[0].entity.uri.value) }}" alt="{{item.content['#field_collection_item'].field_slider_image.alt}}" class="img-responsive" />
+            {% endif %}
+          {% endif %}
+          {% if li_class == 'bg' %}
+            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+              <div class="s3-p-8 s3-p-t0 s3-m-8 s3m-t0">
+                {% if item.content['#field_collection_item'].field_title.value %}
+                <h1 class="s3-fs-xs-4 s3-fs-sm-4 s3-fs-md-4 s3-fs-lg-5">{{item.content['#field_collection_item'].field_title.value}}</h1>
+                {% endif %}
+                {% if item.content['#field_collection_item'].field_text.value %}
+                    {% set bodytxt = item.content['#field_collection_item'].field_text.value %}
+                      {{ bodytxt|replace({'<p>': "<p class='s3-fs-md-1'>"}) |raw}}
+                  {% endif %}
+                {% if item.content['#field_collection_item'].field_link.uri %}
+                  {% if item.content['#field_collection_item'].field_link.0.title != '' %}
+                  <p class="h5"><a href="{{pathurl}}">{{ readmore }} <i class="fa fa-chevron-right"></i></a></p>
+                {% endif %}
+                  {% endif %}
+              </div>
+            </div>
+            {% endif %}
+          </li>
+
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

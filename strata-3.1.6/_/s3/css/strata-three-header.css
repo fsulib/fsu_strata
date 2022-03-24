@@ -1,0 +1,212 @@
+/* Bootstrap Overrides: Stop */
+#fsu-home,
+#fsu-title,
+#fsu-nav-primary { text-transform:uppercase; }
+
+#fsu-home p {
+	margin:0;
+	padding:0.75em 0 0.563em;
+	font-size:0.75em
+}
+@media (max-width: 767px) {
+	#fsu-home p {margin-top: .563em}
+}
+#fsu-home a {font-weight:400;}
+
+@media (max-width: 380px) {
+	#fsu-home p {font-size:.7em;margin-top:.75em}
+	#fsu-home p a {font-weight: 300 !important}
+}
+
+#fsu-nav-utility .navbar-nav>li>a {
+	padding:0.563em;
+	font-size:1em;
+	line-height:1em
+}
+@media (min-width: 767px) {
+	#fsu-nav-utility .navbar-nav>li>a {
+		padding:0.75em 1em;
+		font-size:.75em;
+	}
+}
+#fsu-masthead  {
+	font-family:"Adobe Garamond Pro", "adobe-garamond-pro", "Times New Roman", times, serif;
+	text-align:center;
+}
+#fsu-header  {
+	line-height:1;
+	padding:0;
+	margin:0
+}
+
+#fsu-header a { text-decoration:none; }
+
+@media (max-width: 767px) {
+	#fsu-global-nav .fsu-nav-global {text-align: left}
+	#fsu-global-nav .fsu-nav-global ul::before {content: 'SITE NAVIGATION'; padding-bottom: 1.5em; border-bottom: 1px #fff dotted;margin: 0 0 0.5em 1em;}
+	#fsu-global-nav .fsu-global-menu .fsu-nav-global>ul::before {content: 'GLOBAL NAVIGATION';}
+}
+
+#fsu-seal {
+	position:absolute;
+	width:68px;
+	height:68px;
+	top:-34px;
+	left:50%;
+	z-index:50;
+	margin-left:-34px;
+}
+
+#fsu-title {
+	font-size:2.369em;
+	text-shadow:0px 1px 1px rgba(44, 42, 41, .25);
+	margin:1em 0 0;
+}
+
+#fsu-title a {
+	font-weight:200;
+}
+
+.s3-s #fsu-title,
+.s3-gt #fsu-title {text-shadow:0px 1px 1px rgba(22, 21, 20, 0.50)}
+.s3-k #fsu-title {text-shadow:0px 1px 1px rgba(0, 0, 0, 0.50)}
+
+.fsu-nav-global .navbar-nav>li>a:hover,
+.fsu-nav-global .navbar-nav>li>a:focus,
+#fsu-home a:hover,
+#fsu-home a:focus,
+#fsu-title a:hover,
+#fsu-title a:focus,
+#fsu-nav-utility .navbar-nav>li>a:hover,
+#fsu-nav-utility .navbar-nav>li>a:focus {border-bottom:none}
+
+#fsu-subheading {
+	font-size:1em;
+	text-transform: uppercase;
+	margin: 0 0 10.5px;
+	padding:0;
+}
+
+#fsu-header .s3-c a,
+#fsu-header .s3-w a,
+#fsu-header .s3-n2w a,
+#fsu-header .s3-n1w a,
+#fsu-header .s3-n a {color:#2c2a29 !important}
+
+#fsu-header .s3-c a:hover,
+#fsu-header .s3-c a:focus,
+#fsu-header .s3-w a:hover,
+#fsu-header .s3-w a:focus,
+#fsu-header .s3-n2w a:hover,
+#fsu-header .s3-n2w a:focus,
+#fsu-header .s3-n1w a:hover,
+#fsu-header .s3-n1w a:focus,
+#fsu-header .s3-n a:hover,
+#fsu-header .s3-n a:focus {color:#333130 !important}
+
+#fsu-header .s3-n1s a,
+#fsu-header .s3-n2s a {color:#f4f4f4 !important}
+#fsu-header .s3-n1s a:hover,
+#fsu-header .s3-n1s a:focus,
+#fsu-header .s3-n2s a:hover,
+#fsu-header .s3-n2s a:focus {color:#fbfbfb !important}
+
+#fsu-header .s3-s a,
+#fsu-header .s3-k a { color:#d5d4d4 !important}
+#fsu-header .s3-s a:hover,
+#fsu-header .s3-s a:focus,
+#fsu-header .s3-k a:hover,
+#fsu-header .s3-k a:focus { color:#dbdbdb !important}
+
+.s3-n1s #fsu-home a,
+.s3-n2s #fsu-home a,
+.s3-s #fsu-home a,
+.s3-k #fsu-home a,
+.s3-gt #fsu-home a,
+.s3-n1s #fsu-top a,
+.s3-n2s #fsu-top a,
+.s3-s #fsu-top a,
+.s3-k #fsu-top a,
+.s3-gt #fsu-top a,
+#fsu-header .s3-gt a { color:#fdfcfc !important}
+#fsu-header .s3-gt a:hover,
+#fsu-header .s3-gt a:focus { color:#ffffff !important}
+
+#fsu-header .s3-gt3k a,
+#fsu-header .s3-gt2k a,
+#fsu-header .s3-gt1k a { color:#fdfcfc !important}
+#fsu-header .s3-gt3k a:hover,
+#fsu-header .s3-gt3k a:focus,
+#fsu-header .s3-gt2k a:hover,
+#fsu-header .s3-gt2k a:focus,
+#fsu-header .s3-gt1k a:hover,
+#fsu-header .s3-gt1k a:focus { color:#ffffff !important}
+
+#fsu-header .s3-gd a { color:#161514 !important}
+#fsu-header .s3-gd a:hover,
+#fsu-header .s3-gd a:focus { color:#1d1c1b !important}
+
+.s3-n #fsu-home a,
+.s3-n #fsu-top a,
+#fsu-header .s3-gd3c a,
+#fsu-header .s3-gd2c a,
+#fsu-header .s3-gd1c a { color:#565554 !important}
+#fsu-header .s3-gd3c a:hover,
+#fsu-header .s3-gd3c a:focus,
+#fsu-header .s3-gd2c a:hover,
+#fsu-header .s3-gd2c a:focus,
+#fsu-header .s3-gd1c a:hover,
+#fsu-header .s3-gd1c a:focus { color:#5d5b5b !important}
+
+@media (max-width: 380px) {
+	#fsu-nav-utility ul.navbar-nav>li>a {padding:0.75em 0.49em}
+}
+@media (max-width: 767px) {
+	header .s3-p-2 {padding:0}
+	#fsu-title {margin:0.238em 0 0.178em; font-size:1.777em}
+	#fsu-subhead {padding:0 0 0.422em}
+	.fsu-nav-utility {text-align:right;}
+	.fsu-nav-utility .nav>li {display:inline-block}
+	.fsu-nav-utility .navbar-nav {margin:0}
+	#fsu-nav-utility .navbar-nav>li>a {padding:0.75em 0.75em}
+}
+
+@media (min-width: 768px) {
+	.fsu-nav-utility {margin-right:-.75em}
+	.navbar-right {margin-right:0}
+}
+
+/* FSU Search */
+.headerSearchBox {
+	margin:0 0.238em;
+	padding:0.422em 0.563em 0.563em;
+	border:none;
+}
+.headerSearchBtn.btn-sm {padding:0.317em 0.563em 0.238em}
+header form input,
+header form select {color:#161514; background-color:#fff}
+header form select {height:27px; border:none}
+
+#fsu-global .s3-scored {border-top: 0}
+#fsu-footer .s3-scored {border-bottom: 0}
+
+
+/* Fixed Header */
+@media (min-width: 768px) {
+	.nav-fixed {
+		position:fixed;
+		top:0px;
+		right:0;
+		left:0;
+		z-index:50;
+	}
+	.nav-fixed .fsu-header  {display:none}
+	body.add-fixed {margin-top:164px}
+	#fsu-top p {margin:9px 0 0}
+	#fsu-top a {font-weight: 400}
+	.nav-fixed #fsu-seal,
+	.nav-fixed #fsu-masthead {display:none}
+
+
+	body.add-fixed {margin-top:164px}
+}

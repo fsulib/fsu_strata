@@ -1,0 +1,185 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{% set align = ''%}
+{% if element['#object'].field_choice_style.value == 'Center-Aligned' %}
+  {% set align = 'text-center'%}
+{%else %}
+  {% set align = ''%}
+{%endif%}
+
+
+
+  {% if element['#object'].field_promo_background_color.value is not empty%}
+
+{%
+    set row_classes = [
+      'field',
+      'field--items',
+      'row',
+      'field--name-' ~ field_name|clean_class,
+      'field--type-' ~ field_type|clean_class,
+      'field--label-' ~ label_display,
+    ]
+%}
+
+ {% else %}
+
+{%
+  set row_classes = [
+    'field',
+    'field--items',
+    'row',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+ {% endif %}
+
+
+
+
+{% if element['#object'].field_promo_background_color.value != '' %}
+  {% set row_classes = row_classes|merge([element['#object'].field_promo_background_color.value]) %}
+  {% set bg_array = element['#object'].field_promo_background_color.value|split('.') %}
+{% else %}
+    {% set bg_array = [ '' ] %}
+
+{% endif %}
+
+{%
+  set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'sr-only',
+  ]
+%}
+
+
+
+{% if label_hidden %}
+  {% if multiple %}
+      {% if items|length == 4 %}
+        {% set count = 'col-sm-3' %}
+      {% elseif items|length == 3 %}
+        {% set count = 'col-sm-4' %}
+      {% elseif items|length == 2 %}
+        {% set count = 'col-sm-6' %}
+      {% elseif items|length == 1 %}
+        {% set count = 'col-sm-12' %}
+      {% endif %}    
+    <!-- <div class="s3-p-10 s3-txt-xs-l s3-c {{align}}"> -->
+
+  {% if element['#object'].field_promo_background_color.value is not empty%}
+    <div class="s3-p-10 s3-txt-xs-l {{ bg_array[0] }} {{align}} {{ element['#object'].field_promo_background_color.value }} ">
+    {% else %}
+      <div class="s3-txt-xs-l {{ bg_array[0] }} {{align}}">      
+    {% endif %}
+      <div class="row">
+{% if element['#object'].field_title_size.value|raw != '' %}
+  {% if element['#object'].field_title_size.value == 'small' %}
+    {% set title_class = "h5" %}
+  {% endif %}
+  {% if element['#object'].field_title_size.value == 'large' %}
+    {% set title_class = "h4" %}
+  {% endif %}
+{% else %}
+  {% set title_class = 'h5' %}
+{% endif %}
+        {% for item in items %}
+
+
+{% if 'http://' in item.content['#field_collection_item'].field_wo_link.0.uri or 'https://' in item.content['#field_collection_item'].field_wo_link.0.uri%}
+  {% set pathurl = item.content['#field_collection_item'].field_wo_link.0.uri %}
+{% else %}
+  {% set iurl = item.content['#field_collection_item'].field_wo_link.0.uri|split(':')%}
+  {% set pathurl = file_url(iurl|last) %}
+{% endif %}
+
+
+
+          {% if element['#object'].field_choice_style.value == 'Center-Aligned' %}
+            <div class="col-xs-12 count1: {{ count }} ">
+              {% if item.content['#field_collection_item'].field_wo_link.0.uri != '' %}
+                <div class="{{ title_class }}"><a href="{{pathurl}}">{{ item.content['#field_collection_item'].field_title.value }}</a></div>
+              {% else %}    
+                <div class="{{ title_class }}">{{ item.content['#field_collection_item'].field_title.value }}</div>
+              {% endif %}
+                
+              <!-- <div class="{{ title_class }}">{{ item.content['#field_collection_item'].field_title.value }}</div> -->
+               <!-- <h4>{{ item.content['#field_collection_item'].field_title.value }}</h4> -->
+                <!-- <p>{{ item.content['#field_collection_item'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}</p> -->
+                <p>{{ item.content['#field_collection_item'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}</p>
+            </div>
+          {% else %}
+            <div class="col-xs-12 count2: {{ count }}">
+              {% if item.content['#field_collection_item'].field_wo_link.0.uri != '' %}
+                <div class="{{ title_class }}"><a href="{{pathurl}}">{{ item.content['#field_collection_item'].field_title.value }}</a></div>
+              {% else %}    
+                <div class="{{ title_class }}">{{ item.content['#field_collection_item'].field_title.value }}</div>
+              {% endif %}              
+                <!-- <div class="{{ title_class }}">{{ item.content['#field_collection_item'].field_title.value }}</div> -->                            
+                <!-- <h5>{{ item.content['#field_collection_item'].field_title.value }}</h5>-->
+                <!-- <p>{{ item.content['#field_collection_item'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}</p> -->
+                <p>{{ item.content['#field_collection_item'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

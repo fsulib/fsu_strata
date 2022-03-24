@@ -1,0 +1,161 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--item',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set row_classes = [
+    'field',
+    'field--items',
+    'row',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'sr-only',
+  ]
+%}
+
+
+{% if label_hidden %}
+    {% if multiple %}
+        <div class="flexslider slider-fade">
+            <ul class="slides">
+              
+                {% for item in items %}
+
+
+
+                    {% if item.content['#field_collection_item'].field_link.0.uri != '' %}
+
+                      {% if item.content['#field_collection_item'].field_link.0.title != '' %}
+                        {% set readmore = item.content['#field_collection_item'].field_link.0.title%}
+                      {% else %}
+                        {% set readmore = 'Read More'%}
+                      {% endif %}
+
+                      {% if 'http://' in item.content['#field_collection_item'].field_link.0.uri or 'https://' in item.content['#field_collection_item'].field_link.0.uri%}
+                        {% set pathurl = item.content['#field_collection_item'].field_link.0.uri %}
+                      {% else %}
+                        {% set iurl = item.content['#field_collection_item'].field_link.0.uri|split(':')%}
+                        {% set pathurl = file_url(iurl|last) %}
+                      {% endif %}
+                    {% endif %}
+                    {% set image_path = file_url(item.content['#field_collection_item'].field_slider_image[0].entity.uri.value) %}
+                    
+
+                    {% if item.content['#field_collection_item'].field_color.value != '' %}
+                      {% set bg = item.content['#field_collection_item'].field_color.value %}
+                      {% set arrowbg = item.content['#field_collection_item'].field_color.value %}
+                    {% else %}
+                      {% set bg = 'c' %}
+                      {% set arrowbg ='c' %}    
+                    {% endif %}
+          
+          
+                    {% if item.content['#field_collection_item'].field_pointer_position.value != ''%}
+                      {% set pointer_position = item.content['#field_collection_item'].field_pointer_position.value %}
+                      {% if pointer_position == 'right' %}
+                          {% set offset = 'col-sm-offset-7' %}                      
+                        {% elseif pointer_position == 'left' %}
+                          {% set offset = 'col-sm-offset-1' %}                          
+                      {% endif %}
+                    {% else %}
+                      {% set pointer_position = ''%}
+                      {% if loop.index is even %}
+                          {% set offset = 'col-sm-offset-7' %}
+                      {% else %}
+                          {% set offset = 'col-sm-offset-1' %}
+                      {% endif %}
+                    
+                    {% endif %}  
+                    <li>
+                        <img src="{{image_path}}" alt="" class="img-responsive img-expand" />
+                        <div class="s3-absolute-full">
+                            <div class="wrap-table">
+                                <div class="wrap-table-inner">
+                                    <div class="col-sm-4 {{offset}}">
+                                        <div class="s3-{{ bg }} s3-p-8">
+                                            <h3 class="s3-fs-xs-4 s3-fs-sm-2 s3-fs-md-3 s3-fs-lg-4">{{ item.content['#field_collection_item'].field_title.value }}</h3>
+                                            <!--<p class="s3-fs-md-1 hidden-sm">{{ item.content['#field_collection_item'].field_text.value|replace({'<p>': "", "</p>" : ""})|raw }}</p>-->
+                                            <p class="s3-fs-md-1 hidden-sm">{{ item.content['#field_collection_item'].field_text.value|raw }}</p>
+                                             {% if item.content['#field_collection_item'].field_link.0.uri != '' %}
+                                            <p class="h5"><a href="{{pathurl}}">{{ readmore }} <i class="fa fa-chevron-right"></i></a></p>
+                                          {% endif %}
+                                        </div>
+                                        <img src="//www.fsu.edu/_/s3/img/arrow/arrow-{{ arrowbg }}.png" class="img-responsive hidden-xs" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+    {% else %}
+        {% for item in items %}
+          <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
+        {% endfor %}
+    {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

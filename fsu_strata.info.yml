@@ -1,0 +1,34 @@
+core: 8.x
+core_version_requirement: ^8 || ^9
+type: theme
+base theme: bootstrap
+
+name: 'FSU Strata Theme (LESS)'
+description: 'FSU Strata theme placed within a Bootstrap Drupal subtheme. Uses the Bootstrap framework LESS source files that must be compiled.'
+package: 'Bootstrap'
+
+regions:
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  fullheader: 'Full Width Header'
+  header: 'Top Bar'
+  slideshow: 'Slideshow'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
+  footer: 'Footer'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  fullcontent: 'Full Width Content Bottom'
+  advancedcontent: 'Advanced Region'
+
+libraries:
+  - 'fsu_strata/global-styling'
+  - 'fsu_strata/bootstrap-scripts'
+  - 'fsu_strata/theme'
+  
+ckeditor_stylesheets:
+  - css/ckeditor-iframe.css
+  

@@ -1,0 +1,182 @@
+.wrap-table {
+	width:100%;
+	height:100%;
+	min-height:100%;
+	display:table;
+}
+.wrap-table-inner {
+	display:table-cell;
+	vertical-align:middle;
+}
+.wrap-feature {
+	display:block;
+	position:relative;
+}
+@media screen and (min-width: 768px) {
+	a.cell {z-index:50}
+	.wrap-feature .cell {
+		position:absolute;
+		top:0;
+		right:0;
+		bottom:0;
+		left:0;
+	}
+}
+@media screen and (min-width: 768px) {
+	.three-two-4 {height:313px; height:320px}
+}
+@media screen and (min-width: 992px) {
+	.three-two-4 {height:411px; height:417px}
+	.three-two-6 {height:313px}
+}
+@media screen and (min-width: 1200px) {
+	.three-two-4 {height:506px}
+	.three-two-6 {height:380px}
+}
+
+
+
+
+@media (min-width:768px) {
+	.s3-absolute-full {position:absolute; top:0; right:0; bottom:0; left:0}
+	.s3-absolute {position:absolute; top:0; right:14px; bottom:0; left:14px}
+	.s3-absolute-bottom {position:absolute; left:14px; bottom:14px; right:14px}
+}
+
+/* Carousel */
+@media screen and (max-width:767px) {
+	.flexslider-carousel .slides > li {width:100%; display:block}
+}
+@media screen and (min-width:768px) {
+	.flexslider-carousel {padding: 10px 35px}
+	.flexslider-carousel .flex-control-nav {margin-top:10px; position:relative; bottom:0}
+}
+.flexslider-carousel .flex-direction-nav a:before { color: #2c2a29}
+
+/* Centered */
+@media screen and (min-width: 768px) {
+	.flexslider-centered .s3-n2s {
+		background: transparent;
+	}
+}
+
+/* Centered */
+.flexslider-overlay .overlay {
+	padding: 1.333em 2.369em;
+}
+
+@media screen and (min-width: 768px) {
+	.flexslider-overlay .overlay {
+		display: inline-block;
+		background-color: rgba(22,21,20,0.75);
+	}
+
+	.flexslider-overlay .overlay {
+		padding: 1.333em;
+	}
+
+	.flexslider-overlay .overlay p {
+		margin-bottom: 0;
+	}
+}
+
+/* Fixed */
+@media screen and (min-width: 992px) {
+	.fixed-2-1-col-3 {height:352px}
+	.fixed-2-1-col-4 {height:313px}
+	.fixed-2-1-col-5 {height:274px}
+	.fixed-2-1-col-6 {height:235px}
+
+	.fixed-3-2-col-4 {height:417px}
+	.fixed-3-2-col-6 {height:313px}
+
+	.fixed-4-5-col-3 {height:881px}
+	.fixed-4-5-col-4 {height:783px}
+	.fixed-4-5-col-5 {height:685px}
+	.fixed-4-5-col-6 {height:587px}
+
+	.fixed-5-4-col-3 {height:564px}
+	.fixed-5-4-col-4 {height:501px}
+	.fixed-5-4-col-5 {height:438px}
+	.fixed-5-4-col-6 {height:376px}
+}
+@media screen and (min-width: 1200px) {
+	.fixed-2-1-col-3 {height:427px}
+	.fixed-2-1-col-4 {height:380px}
+	.fixed-2-1-col-5 {height:332px}
+	.fixed-2-1-col-6 {height:285px}
+
+	.fixed-3-2-col-4 {height:506px}
+	.fixed-3-2-col-6 {height:380px}
+
+	.fixed-4-5-col-3 {height:1068px}
+	.fixed-4-5-col-4 {height:950px}
+	.fixed-4-5-col-5 {height:831px}
+	.fixed-4-5-col-6 {height:712px}
+
+	.fixed-5-4-col-3 {height:684px}
+	.fixed-5-4-col-4 {height:608px}
+	.fixed-5-4-col-5 {height:532px}
+	.fixed-5-4-col-6 {height:456px}
+}
+
+.feature-fixed h1:first-child,
+.feature-fixed h2:first-child,
+.feature-fixed h3:first-child,
+.feature-fixed h4:first-child,
+.feature-fixed h5:first-child,
+.feature-fixed h6:first-child,
+.wrap-table h1, .wrap-table .h1,
+.wrap-table h2, .wrap-table .h2,
+.wrap-table h3, .wrap-table .h3,
+.wrap-table h4, .wrap-table .h4,
+.wrap-table h5, .wrap-table .h5,
+.wrap-table h6, .wrap-table .h6 {
+	margin-top: 0;
+}
+
+@media screen and (min-width: 1200px) { /* lg */
+	.feature-fixed-1 {height: 20em}
+	.feature-fixed-2 {height: 15em}
+	.feature-fixed-3 {height: 10em}
+}
+
+@media screen and (max-width: 1199px) and (min-width:992px) { /* md */
+	.feature-fixed-1 {height: 22em}
+	.feature-fixed-2 {height: 16em}
+	.feature-fixed-3 {height: 11em}
+}
+
+@media screen and (max-width: 991px) and (min-width:768px) { /* sm */
+	.feature-fixed-1 {height: 22em}
+	.feature-fixed-2 {height: 17em}
+	.feature-fixed-3 {height: 12em}
+}
+
+@media screen and (max-width: 767px) { /* xs */
+}
+
+.s3-bg-cover {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.video {
+	position:relative;
+	height:0;
+	overflow:hidden;
+	padding-bottom:56.25%;
+	padding-top:0;
+	margin-bottom:0;
+}
+.video iframe, .video object, .video embed {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}

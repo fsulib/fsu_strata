@@ -1,0 +1,255 @@
+
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+
+  set classes = [
+    'field',
+    'col-xs-12',
+    'col-md-6',
+    's3-m-8',
+    'field--item',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+{% if element['#object'].field_choice_style.value == 'Center-Aligned' %}
+
+  {% if element['#object'].field_promo_background_color.value is not empty%}
+
+  {%
+    set row_classes = [
+      's3-p-10',
+      'text-center',
+      's3-txt-xs-l',
+      'field',
+      'field--items',
+      'row',
+      'promo_bg_row',
+      'field--name-' ~ field_name|clean_class,
+      'field--type-' ~ field_type|clean_class,
+      'field--label-' ~ label_display,
+    ]
+  %}
+
+ {% else %}
+
+  {%
+    set row_classes = [
+      'text-center',
+      's3-txt-xs-l',
+      'field',
+      'field--items',
+      'row',
+      'field--name-' ~ field_name|clean_class,
+      'field--type-' ~ field_type|clean_class,
+      'field--label-' ~ label_display,
+    ]
+  %}
+
+ {% endif %}
+
+
+
+{%else %}
+
+  {% if element['#object'].field_promo_background_color.value is not empty%}
+
+
+  {%
+    set row_classes = [
+      's3-p-10',
+      's3-txt-xs-l',
+      'field',
+      'field--items',
+      'promo_bg_row',
+      'row',
+      'field--name-' ~ field_name|clean_class,
+      'field--type-' ~ field_type|clean_class,
+      'field--label-' ~ label_display,
+    ]
+  %}
+
+ {% else %}
+
+
+  {%
+    set row_classes = [
+      's3-txt-xs-l',
+      'field',
+      'field--items',
+      'row',
+      'field--name-' ~ field_name|clean_class,
+      'field--type-' ~ field_type|clean_class,
+      'field--label-' ~ label_display,
+    ]
+  %}
+
+ {% endif %}
+
+
+{%endif%}
+
+{%
+  set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'sr-only',
+  ]
+%}
+
+{% set colors = element['#object'].field_promo_background_color.value|split('.') %}
+
+
+  {% set row_classes = row_classes|merge([colors|first]) %}
+
+{% if element['#object'].field_image_ratio.value != '' %}
+    {% if element['#object'].field_image_ratio.value == 'round' %}
+        {% set round_class = 'img-circle' %}
+        {% set ratio = 'one_into_one_ratio' %}
+        {% set ratio_class = 'col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3' %}
+    {% else %}
+    {% set ratio = element['#object'].field_image_ratio.value %}
+    {% endif %}
+{% endif %}
+
+{% set itemcount = 0 %}
+
+{% if label_hidden %}
+    {% if multiple %}
+
+      {% if items|length == 4 %}
+        {% set count = 'col-sm-3' %}
+      {% elseif items|length == 3 %}
+        {% set count = 'col-sm-4' %}
+      {% elseif items|length == 2 %}
+        {% set count = 'col-sm-6' %}
+      {% elseif items|length == 1 %}
+        {% set count = 'col-sm-12' %}
+      {% endif %}
+
+      {% if element['#object'].field_title_size.value|raw != '' %}
+        {% if element['#object'].field_title_size.value == 'small' %}
+          {% set title_class = "h5" %}
+        {% endif %}
+        {% if element['#object'].field_title_size.value == 'large' %}
+          {% set title_class = "h4" %}
+        {% endif %}
+      {% else %}
+        {% set title_class = 'h5' %}
+      {% endif %}
+
+        <div{{ attributes.addClass(row_classes) }}>
+
+        {% if ratio == 'round' and  element['#object'].field_choice_style.value != 'Center-Aligned'%}
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 count1: {{ count }}">
+                    <div class="row">
+        {% else %}
+            <div class="s3-m-10">
+        {% endif %}
+
+               {% for item in items %}
+                {% if 'http://' in item.content['#field_collection_item'].field_link.0.uri or 'https://' in item.content['#field_collection_item'].field_link.0.uri%}
+                    {% set pathurl = item.content['#field_collection_item'].field_link.0.uri %}
+                  {% else %}
+                    {% set iurl = item.content['#field_collection_item'].field_link.0.uri|split(':')%}
+                    {% set pathurl = base_path ~ iurl|last %}
+                  {% endif %}
+                  {% if element['#object'].field_choice_style.value == 'Center-Aligned' or element['#object'].field_choice_style.value == 'Left-Aligned' %}
+                    {% if ratio is not empty %}
+                            {% set image_object = image_style(item.content['#field_collection_item'].field_image.entity.fid.value, [ratio]) %}
+                            {% set image_path = image_object[ratio] %}
+
+                        {% else %}
+                            {% set image_path = file_url(item.content['#field_collection_item'].field_image.entity.uri.value) %}
+                    {% endif %}
+                    <div class="col-xs-12 {{ count }}">
+                      {% if pathurl != '' %}
+                        {% if ratio == 'one_into_one_ratio' %}
+                          <div class='col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3'>
+                        {% endif %}
+                              <a href="{{ pathurl }}">
+                                <img class="img-responsive img-expand {{ round_class }}" src="{{ image_path }}" alt="{{ item.content['#field_collection_item'].field_image.alt }}">
+                              </a>
+                        {% if ratio == 'one_into_one_ratio' %}
+                          </div>
+                        {% endif %}
+
+                      {% else %}
+                        {% if ratio == 'one_into_one_ratio' %}
+                          <div class='col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3'>
+                        {% endif %}
+                          <img class="img-responsive img-expand {{ round_class }}" src="{{ image_path }}" alt="{{ item.content['#field_collection_item'].field_image.alt }}">
+                        {% if ratio == 'one_into_one_ratio' %}
+                          </div>
+                        {% endif %}
+
+                      {% endif %}
+                      <div class="{{ title_class }} clear-line">
+                        {% if pathurl != '' %}
+                           <a href="{{ pathurl }}">{{ item.content['#field_collection_item'].field_title.value }}</a>
+                        {% else %}
+                          {{ item.content['#field_collection_item'].field_title.value }}
+                        {% endif %}
+                      </div>
+                      <p>{{ item.content['#field_collection_item'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}</p>
+                    </div>
+                {% else %}
+
+                {% endif %}
+              {% endfor %}
+        {% if ratio == 'round' and  element['#object'].field_choice_style.value != 'Center-Aligned'%}
+              </div>
+            </div>
+          </div>
+        {% else %}
+          </div>
+        {% endif %}
+
+        </div>
+    {% else %}
+
+    {% endif %}
+
+{% else %}
+
+{% endif %}

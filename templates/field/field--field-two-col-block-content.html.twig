@@ -1,0 +1,292 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'col-xs-12',
+    'col-md-6',
+    's3-m-8',
+    'field--item',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set row_classes = [
+    'field',
+    'field--items',
+    'row',
+    's3-m-8',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'sr-only',
+  ]
+%}
+
+{% if element['#object'].field_background_color.value != '' %}
+  {% set row_classes = row_classes|merge([element['#object'].field_background_color.value]) %}
+{% endif %}
+
+
+{% if element['#object'].field_background_color.value is empty %}  
+  {% set bg_class = 'feature_twocol-no-bg' %}
+{% endif %}
+
+{% if element['#object'].field_featured_box_image_ratio.value != '' %}
+  {% if element['#object'].field_featured_box_image_ratio.value == 'round' %}
+    {% set round_class = 'img-circle' %}
+    {% set ratio = 'one_into_one_ratio' %}
+  {% else %}
+    
+  {% set ratio = element['#object'].field_featured_box_image_ratio.value %}
+{% endif %}
+{% else %}
+{% endif %}
+
+{% if label_hidden %}
+  {% if multiple %}
+    {% if element['#object'].field_featured_box_image_ratio.value != 'round' %}
+      <div class='col-xs-12 col-sm-12 col-sm-push-0 col-md-12 col-md-push-0 {{ bg_class }}'>
+        <div{{ attributes.addClass(row_classes) }}>
+          {% for item in items %}
+            <div{{ item.attributes.addClass(classes) }}>
+              <div class="row">
+                {# {{ item.content }} #}
+
+                {% if ratio is not empty %}
+                  {%
+                    set image_object = image_style(item.content['#field_collection_item'].field_image.entity.fid.value, [ratio])
+                  %}
+                  {% set image_path = image_object[ratio] %}
+                {% else %}
+                  {% set image_path = file_url(item.content['#field_collection_item'].field_image.entity.uri.value) %}
+                {% endif %}
+                {% if 'http://' in item.content['#field_collection_item'].field_read_more_link.0.uri or 'https://' in item.content['#field_collection_item'].field_read_more_link.0.uri%}
+                  {% set pathurl = item.content['#field_collection_item'].field_read_more_link.0.uri %}
+                {% else %}
+                  {% set iurl = item.content['#field_collection_item'].field_read_more_link.0.uri|split(':')%}
+                  {% set pathurl = base_path ~ iurl|last %}
+                {% endif %}
+            
+                <div class="col-xs-4">
+                  <img class="img-responsive img-expand" alt="" src="{{ image_path }}">
+                </div>
+                <div class="col-xs-8">
+                  {% if pathurl != '' %}
+                    <h3><a href="{{pathurl}}">{{ item.content['#field_collection_item'].field_title.value }}</a></h3>
+                  {% else %}
+                    <h3>{{ item.content['#field_collection_item'].field_title.value }}</h3>              
+                  {% endif %} 
+  
+                  <p> 
+                    {% if item.content['#field_collection_item'].field_sub_title.value is not empty %}
+                    <b>
+                          {{ item.content['#field_collection_item'].field_sub_title.value }}
+                      </b>
+                      <br>
+                    {% endif %}
+                    
+                    
+                    
+                    {{ item.content['#field_collection_item'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}
+                  </p>
+
+            {% if pathurl != '' %}              
+              {% if 'http://' in item.content['#field_collection_item'].field_read_more_link.0.uri or 'https://' in item.content['#field_collection_item'].field_read_more_link.0.uri%}
+                {% if item.content['#field_collection_item'].field_read_more_link.title != '' %}
+                  <a href="{{pathurl}}">{{ item.content['#field_collection_item'].field_read_more_link.title }} <i class="fa fa-angle-right"></i></a></p>
+                {% else %}    
+                {% endif %}
+              {% else %}    
+                {% if item.content['#field_collection_item'].field_read_more_link.title != '' %}
+                  <a href="{{pathurl}}">{{ item.content['#field_collection_item'].field_read_more_link.title }} <i class="fa fa-angle-right"></i></a></p>
+                {% else %}    
+                {% endif %}
+                
+              {% endif %}            
+            {% endif %}
+                </div>
+
+              </div>
+            </div>
+
+            {% if(loop.length == loop.index) %}
+              <div class="clearfix visible-sm"></div>
+            {% elseif(loop.index % 2 == 0) %}
+              <div class="clearfix hidden-sm"></div>
+            {% endif %}
+
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+
+      <div class="{{ element['#object'].field_background_color.value }} {{ bg_class }}">
+        <div class="s3-m-8">
+          <div class="row row--feature-box-two-column">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+              <div class="row">
+                {% for item in items %}
+
+                  <div class="col-xs-12 col-sm-6 s3-m-6">
+                    <div class="row"> 
+                      <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-0 s3-m-8 s3-m-t0">
+                        
+                  {% set ratio = 'one_into_one_ratio' %}
+                  {%
+                    set image_object = image_style(item.content['#field_collection_item'].field_image.entity.fid.value, [ratio])
+                  %}
+                  {% set image_path = image_object[ratio] %}
+
+                {% if 'http://' in item.content['#field_collection_item'].field_read_more_link.0.uri or 'https://' in item.content['#field_collection_item'].field_read_more_link.0.uri%}
+                  {% set pathurl = item.content['#field_collection_item'].field_read_more_link.0.uri %}
+                {% else %}
+                  {% set iurl = item.content['#field_collection_item'].field_read_more_link.0.uri|split(':')%}
+                  {% set pathurl = base_path ~ iurl|last %}
+                {% endif %}
+                
+                        <img class="img-responsive img-circle" alt="" src="{{ image_path }}">
+                      </div>
+                      <div class="col-xs-12 col-md-8 s3-txt-xs-c s3-txt-sm-c">
+
+                  {% if pathurl != '' %}
+                    <h3><a href="{{pathurl}}">{{ item.content['#field_collection_item'].field_title.value }}</a></h3>
+                  {% else %}
+                    <h3>{{ item.content['#field_collection_item'].field_title.value }}</h3>              
+                  {% endif %} 
+  
+                  <p> 
+                    {% if item.content['#field_collection_item'].field_sub_title.value is not empty %}
+                    <b>
+                          {{ item.content['#field_collection_item'].field_sub_title.value }}
+                      </b>
+                      <br>
+                    {% endif %}
+                    
+                    
+                    
+                    {{ item.content['#field_collection_item'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}
+                  </p>
+
+            {% if pathurl != '' %}              
+              {% if 'http://' in item.content['#field_collection_item'].field_read_more_link.0.uri or 'https://' in item.content['#field_collection_item'].field_read_more_link.0.uri%}
+                {% if item.content['#field_collection_item'].field_read_more_link.title != '' %}
+                  <a href="{{pathurl}}">{{ item.content['#field_collection_item'].field_read_more_link.title }} <i class="fa fa-angle-right"></i></a></p>
+                {% else %}    
+                {% endif %}
+              {% else %}    
+                {% if item.content['#field_collection_item'].field_read_more_link.title != '' %}
+                  <a href="{{pathurl}}">{{ item.content['#field_collection_item'].field_read_more_link.title }} <i class="fa fa-angle-right"></i></a></p>
+                {% else %}    
+                {% endif %}
+                
+              {% endif %}            
+            {% endif %}
+
+
+            <!-- Begin Old Version 
+                        <h3>{{ item.content['#field_collection_item'].field_title.value }}</h3>
+                        <p>
+                          {% if item.content['#field_collection_item'].field_sub_title.value is not empty %}
+                            <b>
+                              {{ item.content['#field_collection_item'].field_sub_title.value }}
+                            </b>
+                            <br>
+                          {% endif %}
+                          {{ item.content['#field_collection_item'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}
+                        </p>
+                        {% if 'http://' in item.content['#field_collection_item'].field_read_more_link.0.uri or 'https://' in item.content['#field_collection_item'].field_read_more_link.0.uri%}
+                          {% set pathurl = item.content['#field_collection_item'].field_read_more_link.0.uri %}
+                        {% else %}
+                          {% set iurl = item.content['#field_collection_item'].field_read_more_link.0.uri|split(':')%}
+                          {% set pathurl = base_path ~ iurl|last %}
+                        {% endif %}
+      
+                        {% if 'http://' in item.content['#field_collection_item'].field_read_more_link.0.uri or 'https://' in item.content['#field_collection_item'].field_read_more_link.0.uri%}
+                        <a href="{{pathurl}}">{{ item.content['#field_collection_item'].field_read_more_link.title }} <i class="fa fa-angle-right"></i></a></p>
+                        {% endif %} -->
+                      </div>
+                    </div>
+                  </div>
+
+                  {% if(loop.index % 2 == 0) %}
+                    <div class="clearfix hidden-xs"></div>
+                  {% endif %}
+
+
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+    {% endif %}
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

@@ -1,0 +1,47 @@
+global-styling:
+  css:
+    theme:
+      /libraries/flexslider/flexslider.css: {}
+      css/style.css: {}
+      css/custom.css: {}
+      //cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css: { }
+      //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css: { }
+      strata-{strataversion}/_/s3/css/bootstrap.css: {}
+      strata-{strataversion}/_/s3/css/strata.css: {}
+      strata-{strataversion}/_/s3/css/extend/strata-flexslider.css: {}
+      strata-{strataversion}/_/s3/css/extend/strata-features.min.css: {}
+      strata-{strataversion}/_/s3/css/extend/strata-backgrounds-rs.css: {}
+      strata-{strataversion}/_/s3/css/extend/strata-backgrounds-saw.min.css: {}
+#      strata-{strataversion}/_/s3/css/strata-three.css: {}
+      strata-{strataversion}/_/s3/css/print.css: { media: print }
+      strata-{strataversion}/_/s3/css/strata-extend.min.css: {}
+      css/strata-{strataversion}/style-overrides.css: {}
+theme:
+  js:
+#    strata-3.1/_/s3/js/strata.js: {}
+    js/script.js: {preprocess: false}
+    strata-{strataversion}/_/s3/js/bootstrap.min.js: {}
+    strata-{strataversion}/_/s3/js/strata.js: {}
+    strata-{strataversion}/_/s3/js/strata-extend.min.js: {}
+    strata-{strataversion}/_/s3/js/kwall-custom.js: {}
+    strata-{strataversion}/_/s3/js/strata-legacy.min.js: {}
+  dependencies:
+    - core/jquery.ui.effects.slide
+    - bootstrap/drupal.bootstrap
+    - bootstrap/attributes
+
+bootstrap-scripts:
+  js:
+    bootstrap/js/affix.js: {}
+    bootstrap/js/alert.js: {}
+    bootstrap/js/button.js: {}
+    bootstrap/js/carousel.js: {}
+    bootstrap/js/collapse.js: {}
+    #    bootstrap/js/dropdown.js: {}
+    bootstrap/js/tooltip.js: {}
+    bootstrap/js/popover.js: {}
+    bootstrap/js/scrollspy.js: {}
+    bootstrap/js/tab.js: {}
+    bootstrap/js/transition.js: {}
+  dependencies:
+    - bootstrap/dropdown

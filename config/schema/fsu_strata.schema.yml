@@ -1,0 +1,5 @@
+# Schema for the theme setting configuration file of the fsu_strata theme.
+
+fsu_strata.settings:
+  type: theme_settings
+  label: 'fsu_strata settings'

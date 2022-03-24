@@ -1,0 +1,50 @@
+{% block content %}
+    {{ content|without('field_color', 'field_title','field_sub_title','field_body') }}
+    {% set color = content.field_color['#items'].getValue() %}
+
+    {% set classes = [
+    's3-p-10',
+    's3-' ~ color.0.value,
+    ] %}
+
+    {% set title %}
+        {{ content.field_title }}
+    {% endset %}
+
+    {% set sub_title %}
+        {{ content.field_sub_title }}
+    {% endset %}
+
+    {% set conBody %}
+        {{ content.field_body }}
+    {% endset %}
+
+    {% set blockclass = 'block full-block-text' %}
+    <div {{ attributes.addClass(blockclass) }} >
+        {{ title_prefix }}
+        {% if label %}
+            <h2{{ title_attributes }}>{{ label }}</h2>
+        {% endif %}
+        {{ title_suffix }}
+
+        <div class="s3-{{ color.0.value }} s3-p-10">
+            <div class="row">
+
+                <div class="col-xs-12 text-center">
+                    <div class="s3-hero">
+                        {% if title %}
+                            <h2>{{ title }}</h2>
+                        {% endif %}
+                        {% if sub_title %}
+                            <p class="h5 text-uppercase">{{ sub_title }}</p>
+                        {% endif %}
+                        {% if conBody %}
+                            {{ conBody }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

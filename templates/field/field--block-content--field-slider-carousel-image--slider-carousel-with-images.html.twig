@@ -1,0 +1,162 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+
+  set classes = [
+    'field',
+    'field--item',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set row_classes = [
+    'field',
+    'field--items',
+    'row',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+{%
+  set title_classes = [
+    'field--label',
+    label_display == 'visually_hidden' ? 'sr-only',
+  ]
+%}
+
+{% if element['#object'].field_description is not empty %}
+  <div class="col-xs-12 col-sm-3 cwi">
+    <div class="s3-m-6">
+      {{ element['#object'].field_description.value|replace({'<p>': "", "</p>" : ""})|raw }}
+    </div>
+  </div>
+  {% set left = 'col-xs-12 col-sm-9' %}
+  {%set leftflex = 'carousel-items-max-3' %}
+{% else %}
+  {% set left = '' %}
+  {% set leftflex = 'carousel-items' %}
+{% endif %}
+
+{% if label_hidden %}
+  {% if multiple %}
+   <div class="{{ left }} cwi">    
+    <div class="row">
+      <!-- <div class="col-xs-12"> -->
+        <div class="flexslider flexslider-carousel {{ leftflex }}">
+          <ul class="slides">
+          {% for item in items %}
+
+            {% set linkexists = false %}
+
+            {% if item.content['#field_collection_item'].field_link.0.uri is not empty %}
+
+              {% if 'http://' in item.content['#field_collection_item'].field_link.0.uri or 'https://' in item.content['#field_collection_item'].field_link.0.uri %}
+                {% set pathurl = item.content['#field_collection_item'].field_link.0.uri %}
+              {% else %}
+                {% set iurl = item.content['#field_collection_item'].field_link.0.uri|split(':')%}
+                {% set pathurl = file_url(iurl|last) %}
+              {% endif %}
+
+              {% set linkexists = true %}
+
+            {% endif %}
+
+
+            <li>
+              <div class="col-sm-12">
+                <br class="visible-xs" />
+                {% if item.content['#field_collection_item'].field_slider_image[0].entity.uri.value %}
+                <div class="s3-m-5 s3-m-t0 hidden-xs">
+                  {% if linkexists == true %}<a href="{{pathurl}}">{% endif %}
+                    {% set ratio = 'three_into_two_ratio' %}
+                    {% set image_object = image_style(item.content['#field_collection_item'].field_slider_image.entity.fid.value, [ratio]) %}
+                    {% set image_path = image_object[ratio] %}                    
+                    <img src="{{ image_path }}" alt="{{item.content['#field_collection_item'].field_slider_image.alt}}" class="img-responsive img-expand" />                  
+                  {% if linkexists == true %}</a>{% endif %}
+                </div>
+                {% endif %}
+                {% if item.content['#field_collection_item'].field_title.value is not empty %}
+                  {% if linkexists == true %}
+                  <h3 class="h5"><a href="{{pathurl}}">{{item.content['#field_collection_item'].field_title.value}}</a></h3>
+                  {% else %}
+                  <h3 class="h5">{{item.content['#field_collection_item'].field_title.value}}</h3>                  
+                  {% endif %}
+                {% endif %}
+                  <!--
+                  {% if item.content['#field_collection_item'].field_text.value %}
+                    {% set bodytxt = item.content['#field_collection_item'].field_text.value %}
+                    {{ bodytxt|raw}}
+                  {% endif %}                  
+                  -->
+                  {% if item.content['#field_collection_item'].field_text.value %}
+                    {{ item.content['#field_collection_item'].field_text.value|replace({'<p>': "", "</p>" : ""})|raw }}
+                  {% endif %}                  
+              </div>
+            </li>
+          {% endfor %}
+      </ul>
+    </div>
+ <!-- </div> -->
+</div>
+   </div>
+
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field--item') }}>{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

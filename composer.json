@@ -1,0 +1,25 @@
+{
+  "name": "fsulib/fsu_strata",
+  "description": "A Drupal 9 theme for FSU websites.",
+  "type": "drupal-custom-theme",
+  "keywords": ["Drupal"],
+  "homepage": "https://github.com/fsulib/fsu_strata",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Favenzio Calvo",
+      "email": "fcalvo@fsu.edu",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Bryan J. Brown",
+      "email": "bjbrown@fsu.edu",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Brian Arsenault",
+      "email": "barsenault@fsu.edu",
+      "role": "Maintainer"
+    }
+  ]
+}

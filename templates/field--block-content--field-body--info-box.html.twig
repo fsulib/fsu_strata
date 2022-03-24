@@ -1,0 +1,4 @@
+{% for item in items %}
+  {{ item.content['#text']|replace({'<p>': "<p class='leadx'>"}) |raw}}
+{% endfor %}
+

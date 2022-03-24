@@ -1,0 +1,35 @@
+{% block content %}
+    {{ content|without('field_color', 'field_title','field_body') }}
+    {% set color = content.field_color['#items'].getValue() %}
+
+    {% set classes = [
+    's3-' ~ color.0.value,
+    's3-p-8',
+    's3-m-8',
+    ] %}
+
+    {% set title %}
+        {{ content.field_title }}
+    {% endset %}
+
+    {% set conBody %}
+        {{ content.field_body }}
+    {% endset %}
+
+    {% set blockclass = 'block info-box-block' %}
+    <div {{ attributes.addClass(blockclass) }} >
+        {{ title_prefix }}
+        {% if label %}
+            <h2{{ title_attributes }}>{{ label }}</h2>
+        {% endif %}
+        {{ title_suffix }}
+        <div class="s3-{{ color.0.value }} s3-p-8 s3-m-8">
+            {% if title %}
+                <h3 class="s3-m-t0">{{ title }}</h3>
+            {% endif %}
+            {% if conBody %}
+                {{ conBody }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
