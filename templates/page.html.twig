@@ -680,19 +680,28 @@
                               {% else %}
                                 <nav class="nav-social nav-icons">
                                     {% if facebook is empty %}
-                                        {% set facebook = 'https://www.facebook.com/floridastate' %}
+                                        {% set facebook = 'https://www.facebook.com/FSULibraries' %}
                                     {% endif %}
                                     {% if instagram is empty %}
-                                        {% set instagram = 'https://instagram.com/floridastateuniversity/' %}
+                                        {% set instagram = 'https://instagram.com/fsulibraries/' %}
                                     {% endif %}
                                     {% if twitter is empty %}
-                                        {% set twitter = 'https://twitter.com/floridastate' %}
+                                        {% set twitter = 'https://twitter.com/fsulibraries' %}
                                     {% endif %}
                                     {% if youtube is empty %}
-                                        {% set youtube = 'https://www.youtube.com/FloridaState' %}
+                                        {% set youtube = 'https://www.youtube.com/fsulibraries' %}
                                     {% endif %}
                                     {% if linkedin is empty %}
                                         {% set linkedin = 'https://www.linkedin.com/edu/school?id=18100' %}
+                                    {% endif %}
+                                    {% if flickr is empty %}
+                                        {% set flickr = 'https://www.flickr.com/photos/fsulib' %}
+                                    {% endif %}
+                                    {% if pinterest is empty %}
+                                        {% set pinterest = 'https://www.pinterest.com/fsulibraries' %}
+                                    {% endif %}
+                                    {% if blog is empty %}
+                                        {% set blog = 'https://fsulib.wordpress.com' %}
                                     {% endif %}
                                     <ul class="menu clearfix">
                                         <li><a href="{{ facebook }}" title="Like Florida State on Facebook"
@@ -707,10 +716,14 @@
                                         <li><a href="{{ youtube }}" title="Follow Florida State on Youtube"
                                                target="_blank"><span class="fa fa-youtube"></span><span
                                                         class="hidden">YouTube</span></a></li>
-                                        <li><a href="{{ linkedin }}" title="Connect with Florida State on LinkedIn"
-                                               target="_blank"><span class="fa fa-linkedin"></span><span class="hidden">LinkedIn</span></a>
+                                        <li><a href="{{ flickr }}" title="Connect with Florida State on Flickr"
+                                               target="_blank"><span class="fa fa-flickr"></span><span class="hidden">Flickr</span></a>
                                         </li>
-                                        <li><a href="https://www.fsu.edu/socialmedia/" title="FSU Social Media"><span class="fa fa-plus"></span><span class="hidden">More FSU Social Media</span></a>
+                                        <li><a href="{{ pinterest }}" title="Connect with Florida State on Pinterest"
+                                               target="_blank"><span class="fa fa-pinterest"></span><span class="hidden">Pinterest</span></a>
+                                        </li>
+                                        <li><a href="{{ blog }}" title="Connect with Florida State on our blog"
+                                               target="_blank"><span class="fa fa-rss"></span><span class="hidden">Blog</span></a>
                                         </li>
                                     </ul>
                                 </nav>
