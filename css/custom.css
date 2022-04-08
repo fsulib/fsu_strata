@@ -1,13 +1,8 @@
-/**
-Correction after drupal 8.6.1 update.
- */
-/*.form-group{*/
-    /*margin-bottom:0!important;*/
-/*}*/
+/*Important bootstrap overrides*/
 
-
-/** This is our commit from the 8-28-19 demo */
-
-
-
+@media (min-width: 768px) {
+  .navbar-header {
+    float: none !important;
+  }
+}
 
