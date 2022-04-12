@@ -33,7 +33,7 @@
 
 /* Override for FSU request */
 .page-header {
-  margin-bottom: 0px !important;
+  margin-bottom: 10px !important;
 }
 
 .region-sidebar-first .menu li.expanded li.active a {
