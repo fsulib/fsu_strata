@@ -21,6 +21,10 @@ h2 {
   margin-bottom: 20px !important;
 }
 
+h4 {
+  text-transform: none !important;
+}
+
 .page-header {
   margin-top: 30px !important;
 }
