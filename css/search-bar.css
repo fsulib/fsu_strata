@@ -1,0 +1,62 @@
+/*Styles related to the home page search bar*/
+div.home-page-search {
+  margin:0;
+  padding: 0;
+}
+
+.home-page-search .cf:before, .cf:after{
+    content:"";
+    display:table;
+}
+
+.home-page-search .cf:after{
+    clear:both;
+}
+
+.home-page-search .cf{
+    zoom:1;
+}  
+
+.home-page-search .form-wrapper {
+  /*padding: 15px;
+  background: #444;
+  background: rgba(0,0,0,.1);
+  border-radius: 10px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1) inset, 0 1px 0 rgba(255,255,255,.1);*/
+}
+
+.home-page-search .search-query {
+  height: 40px;
+  padding: 10px 5px;    
+  font: bold 15px;
+  border: 0;
+  background: #fff;
+  border-radius: 3px 0 0 3px;
+  border: 1px solid #ccc; 
+}
+ 
+.home-page-search .search-query:focus {
+  outline: 0;
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+
+.home-page-search .search-submit {
+  overflow: visible;
+  position: relative;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  height: 40px;
+  width: 110px;
+  font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+  color: #fff;
+  text-transform: uppercase;
+  background: #782f40;
+  border-radius: 0 3px 3px 0;      
+  text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+}
+
+.home-page-search .search-submit:hover{		
+    background: #2c2a29;
+}	

@@ -4,6 +4,8 @@ global-styling:
       /libraries/flexslider/flexslider.css: {}
       css/style.css: {}
       css/custom.css: {}
+      css/tabs.css: {}
+      css/search-bar.css: {}
       //cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css: { }
       //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css: { }
       strata-{strataversion}/_/s3/css/bootstrap.css: {}
@@ -19,6 +21,7 @@ global-styling:
 theme:
   js:
 #    strata-3.1/_/s3/js/strata.js: {}
+    js/custom.js: {preprocess: false}
     js/script.js: {preprocess: false}
     strata-{strataversion}/_/s3/js/bootstrap.min.js: {}
     strata-{strataversion}/_/s3/js/strata.js: {}
