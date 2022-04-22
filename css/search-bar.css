@@ -1,7 +1,12 @@
 /*Styles related to the home page search bar*/
+div#home-page-search-container {
+  background-image: url(/sites/default/files/banners/strozier-rr-home-banner.png);
+}
+
 div.home-page-search {
-  margin:0;
+  margin:20px 0 10px 0;
   padding: 0;
+  text-align: center;
 }
 
 .home-page-search .cf:before, .cf:after{
@@ -18,11 +23,7 @@ div.home-page-search {
 }  
 
 .home-page-search .form-wrapper {
-  /*padding: 15px;
-  background: #444;
-  background: rgba(0,0,0,.1);
-  border-radius: 10px;
-  box-shadow: 0 1px 1px rgba(0,0,0,.1) inset, 0 1px 0 rgba(255,255,255,.1);*/
+
 }
 
 .home-page-search .search-query {
@@ -32,7 +33,8 @@ div.home-page-search {
   border: 0;
   background: #fff;
   border-radius: 3px 0 0 3px;
-  border: 1px solid #ccc; 
+  border: 1px solid #ccc;
+  width: 80%; 
 }
  
 .home-page-search .search-query:focus {
@@ -58,5 +60,32 @@ div.home-page-search {
 }
 
 .home-page-search .search-submit:hover{		
-    background: #2c2a29;
+  background: #2c2a29;
 }	
+
+.home-page-search #advanced-search-link {
+  text-align: left;
+  margin: 10px 0 0 40px;
+  padding: 0;
+  font-size: 85%;
+}
+
+.home-page-search #advanced-search-link a {
+  font-weight: 200;
+}
+
+/*Mobile Styles*/
+@media only screen and (max-width: 600px) {
+  .home-page-search .search-query {
+    width: 95%;
+  }
+
+  .home-page-search .search-submit {
+    margin-top: 10px;
+  }
+  
+  .home-page-search #advanced-search-link {
+    text-align: center;
+    margin: 10px 0 0 0;
+  }
+}
