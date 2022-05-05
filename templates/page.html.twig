@@ -264,7 +264,7 @@
                     {% if firstsidebar_rendered is not empty %}
                         {% if page.sidebar_first %}
                             {% block sidebar_first %}
-                                <aside class="col-sm-3" role="complementary">
+                                <aside class="col-sm-2" role="complementary">
                                     {{ page.sidebar_first }}
                                 </aside>
                             {% endblock %}
@@ -274,9 +274,9 @@
 
                     {# Content #}
                     {% set content_classes = [
-                    firstsidebar_rendered is not empty and secondsidebar_rendered is not empty? 'col-sm-6',
-                    firstsidebar_rendered is not empty and secondsidebar_rendered is empty? 'col-sm-9',
-                    firstsidebar_rendered is empty and secondsidebar_rendered is not empty ? 'col-sm-9',
+                    firstsidebar_rendered is not empty and secondsidebar_rendered is not empty? 'col-sm-8',
+                    firstsidebar_rendered is not empty and secondsidebar_rendered is empty? 'col-sm-10',
+                    firstsidebar_rendered is empty and secondsidebar_rendered is not empty ? 'col-sm-10',
                     firstsidebar_rendered is empty and secondsidebar_rendered is empty ? 'col-sm-12'
                     ] %}
                     <section{{ content_attributes.addClass(content_classes) }}>
@@ -320,7 +320,7 @@
                     {% if secondsidebar_rendered is not empty %}
                         {% if page.sidebar_second %}
                             {% block sidebar_second %}
-                                <aside class="col-sm-3" role="complementary">
+                                <aside class="col-sm-2" role="complementary">
                                     {{ page.sidebar_second }}
                                 </aside>
                             {% endblock %}

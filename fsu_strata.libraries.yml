@@ -6,6 +6,7 @@ global-styling:
       css/custom.css: {}
       css/tabs.css: {}
       css/search-bar.css: {}
+      css/content-menus.css: {}
       //cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css: { }
       //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css: { }
       strata-{strataversion}/_/s3/css/bootstrap.css: {}
