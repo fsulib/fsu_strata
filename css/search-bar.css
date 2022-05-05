@@ -47,7 +47,7 @@ div.home-page-search {
   overflow: visible;
   position: relative;
   border: 0;
-  padding: 0;
+  padding: 2px;
   cursor: pointer;
   height: 40px;
   width: 110px;
@@ -72,6 +72,19 @@ div.home-page-search {
 
 .home-page-search #advanced-search-link a {
   font-weight: 200;
+}
+
+.home-page-search .additional-search-links {
+  text-align: left;
+  margin: 10px 0 0 40px;
+  padding: 0;
+  font-size: 85%;
+}
+
+.home-page-search .additional-search-links a {
+  font-weight: 200;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 /*Mobile Styles*/
