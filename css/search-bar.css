@@ -33,14 +33,26 @@ div.home-page-search {
   border: 0;
   background: #fff;
   border-radius: 3px 0 0 3px;
-  border: 1px solid #ccc;
-  width: 80%; 
+  border: 1px solid #ccc; 
+}
+
+#onesearch-container .search-query {
+  width: 80%;
+}
+
+#more-options-container .search-query {
+  width: 50%;
 }
  
 .home-page-search .search-query:focus {
   outline: 0;
   background: #fff;
   box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+
+.home-page-search #other-search-types {
+  height: 40px;
+  border: 1px solid #ccc;
 }
 
 .home-page-search .search-submit {
@@ -76,9 +88,13 @@ div.home-page-search {
 
 .home-page-search .additional-search-links {
   text-align: left;
-  margin: 10px 0 0 40px;
+  margin: 10px auto 0 auto;
   padding: 0;
   font-size: 85%;
+}
+
+.home-page-search .additional-search-links li {
+  list-style: none;
 }
 
 .home-page-search .additional-search-links a {
@@ -87,16 +103,61 @@ div.home-page-search {
   padding-left: 15px;
 }
 
-/*Mobile Styles*/
-@media only screen and (max-width: 600px) {
-  .home-page-search .search-query {
+/* Desktop Styles only */
+@media only screen and (min-width: 986px) {
+
+  .home-page-search .additional-search-links {
+    text-align: center;
+  }
+
+  .home-page-search .additional-search-links li {
+    display: inline;
+  }
+}
+
+/* iPad Styles */
+@media only screen and (max-width: 985px) and (min-width: 601px) {
+
+  #home-page-search-container .col-sm-offset-1 {
+    margin-left: 0;
+  }
+
+  #home-page-search-container .col-sm-5 {
+    width: 100%;
+  }
+
+  #more-options-container .search-query {
     width: 95%;
+  }
+
+  .home-page-search #other-search-types {
+    margin-top: 10px;
   }
 
   .home-page-search .search-submit {
     margin-top: 10px;
   }
-  
+}
+
+/*Mobile Styles*/
+@media only screen and (max-width: 600px) {
+
+  #onesearch-container .search-query {
+    width: 95%;
+  }
+
+  #more-options-container .search-query {
+    width: 95%;
+  }
+
+  .home-page-search #other-search-types {
+    margin-top: 10px;
+  }
+
+  .home-page-search .search-submit {
+    margin-top: 10px;
+  }
+
   .home-page-search #advanced-search-link {
     text-align: center;
     margin: 10px 0 0 0;

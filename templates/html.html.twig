@@ -58,14 +58,6 @@
 <!DOCTYPE html>
 <html {{ html_attributes }}>
   <head>
-    <!-- BEGIN - Florida State University - Google Tag Manager Header Script -->
-    <!-- CODE UPDATE - 11/23/2017 -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5P9ZCB');</script>
-    <!-- END - Florida State University - Google Tag Manager Header Script -->
 
     <head-placeholder token="{{ placeholder_token|raw }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
@@ -79,22 +71,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
-
-<!-- Facebook Script -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=104580419614646";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<!-- end facebook script -->
-
-
-
   </head>
+
   <body id="fsu-strata-three" {{ attributes.addClass(body_classes) }} >
 
     <!-- BEGIN - Florida State University - Google Tag Manager NoScript -->

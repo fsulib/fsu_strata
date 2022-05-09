@@ -1,0 +1,20 @@
+/* Custom styles for forms. */
+
+.btn, .btn-link {
+  border-radius: 0.25em !important;
+  font-weight: bold !important;
+}
+
+.btn::after {
+  content: " >";
+  font-weight: 600;
+}
+
+.btn.s3-c:hover {
+  background-color: #161514;
+}
+
+.btn.s3-gt:hover {
+  background-color: #ffffff;
+  color: #161514 !important;
+}
