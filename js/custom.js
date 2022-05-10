@@ -54,3 +54,30 @@ function allSearch(search_form) {
   window.location = query;
   return false;
 }
+
+/* More Options Search Function */
+function moreOptionsSearch(search_form) {
+  var sanitized_input = encodeURIComponent(document.forms[search_form]["more-options-search-input"].value);
+  var search_type = document.forms[search_form]["other-search-types"].value;
+  var query = "https://fsu-flvc.primo.exlibrisgroup.com/discovery/search?query=any,contains,";
+
+  switch (search_type) {
+    case 'articles':
+      query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0";
+      break;
+    case 'databases':
+      query = "https://guides.lib.fsu.edu/az.php?q=" + sanitized_input;
+      break;
+    case 'journals':
+      query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0";
+      break;
+    case 'ebooks':
+      query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0";
+      break;
+    default:
+      query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0";
+  }
+
+  window.location = query;
+  return false;
+}
