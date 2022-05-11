@@ -1,7 +1,6 @@
 global-styling:
   css:
     theme:
-      /libraries/flexslider/flexslider.css: {}
       css/style.css: {}
       css/custom.css: {}
       css/tabs.css: {}
