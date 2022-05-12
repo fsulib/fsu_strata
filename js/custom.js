@@ -63,16 +63,19 @@ function moreOptionsSearch(search_form) {
 
   switch (search_type) {
     case 'articles':
-      query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0";
+      query += sanitized_input + 
+        "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&facet=rtype,include,articles&mfacet=tlevel,include,online_resources,2&mfacet=tlevel,include,peer_reviewed,1&offset=0";
       break;
     case 'databases':
       query = "https://guides.lib.fsu.edu/az.php?q=" + sanitized_input;
       break;
     case 'journals':
-      query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0";
+      query = "https://fsu-flvc.primo.exlibrisgroup.com/discovery/jsearch?query=any,contains," + sanitized_input + 
+        "&tab=jsearch_slot&vid=01FALSC_FSU:Home&offset=0&journals=any," + sanitized_input;
       break;
     case 'ebooks':
-      query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0";
+      query += sanitized_input +
+        "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&mfacet=rtype,include,books,1&mfacet=tlevel,include,online_resources,2&lang=en&offset=0";
       break;
     default:
       query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0";
