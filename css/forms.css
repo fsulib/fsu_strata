@@ -1,5 +1,12 @@
 /* Custom styles for forms. */
 
+.form-required:after { 
+  display: inline-block; 
+  content: "*";
+  color: red;
+  font-size: 150%;
+}
+
 .btn, .btn-link {
   border-radius: 0.25em !important;
   font-weight: bold !important;

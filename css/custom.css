@@ -27,14 +27,34 @@
 
 h1 {
   font-size: 45px !important;
+  font-family: acumin-pro-condensed, Arial, sans-serif !important;
+  text-transform: none !important;
 }
 
 h2 {
   font-size: 32px !important;
   margin-bottom: 20px !important;
+  font-family: acumin-pro-condensed, Arial, sans-serif !important;
+  text-transform: none !important;  
+}
+
+h3 {
+  font-family: acumin-pro-condensed, Arial, sans-serif !important;
+  text-transform: none !important;
 }
 
 h4 {
+  font-family: acumin-pro-condensed, Arial, sans-serif !important;
+  text-transform: none !important;
+}
+
+h5 {
+  font-family: acumin-pro-condensed, Arial, sans-serif !important;
+  text-transform: none !important;
+}
+
+h6 {
+  font-family: acumin-pro-condensed, Arial, sans-serif !important;
   text-transform: none !important;
 }
 
