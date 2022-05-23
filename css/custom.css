@@ -58,6 +58,11 @@ h6 {
   text-transform: none !important;
 }
 
+#fsu-title {
+  font-family: "Times New Roman" !important;
+  text-transform: uppercase !important;
+}
+
 .page-header {
   margin-top: 30px !important;
 }
