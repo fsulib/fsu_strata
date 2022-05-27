@@ -101,6 +101,7 @@ div.home-page-search {
   font-weight: 200;
   padding-right: 15px;
   padding-left: 15px;
+  background-image: none;
 }
 
 /* Desktop Styles only */
