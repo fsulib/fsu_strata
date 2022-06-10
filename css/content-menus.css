@@ -18,9 +18,19 @@
   font-size: 70%;
   color: #2c2a29;
   padding: 0.8em 1em;
+  background-image: none;
 }
 
 .main-container .container aside.col-sm-2 nav a:hover {
   color: white;
   background-color: #2c2a29;
+}
+
+.main-container .container aside.col-sm-2 .dropdown-menu {
+  box-shadow: none;
+  position: inherit;
+  border: none;
+  float: none;
+  min-width: unset;
+  margin: 0 0 0 3px;
 }
