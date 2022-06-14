@@ -83,3 +83,7 @@ div#fsu-masthead h1#fsu-title a, div#home-page-icon-section a {
 .page-header {
   margin-top: 30px !important;
 }
+
+a[id] { 
+  scroll-margin-top: 190px; 
+}
