@@ -8,6 +8,7 @@ global-styling:
       css/content-menus.css: {}
       css/forms.css: {}
       css/aal-popup.css: {}
+      css/five-by-two-display.css: {}
       //cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css: { }
       //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css: { }
       strata-{strataversion}/_/s3/css/bootstrap.css: {}
