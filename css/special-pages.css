@@ -1,0 +1,112 @@
+/* Overrides for special pages */
+
+/* Special collections home page */
+div#sca-home-page-gallery a {
+  color: white;
+  text-decoration: underline;
+}
+
+div#sca-home-page-gallery a:hover {
+  text-decoration: none;
+}
+
+div#sca-home-page-gallery div#research { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Research.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#research:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Research-hover.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#visit { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Visit.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#visit:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Visit-hover.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#collections { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Collections.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#collections:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Collections-hover.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#catalogs-databases { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Catalog.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#catalogs-databases:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Catalog-hover.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#exhibits-events { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Exhibits-Events.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#exhibits-events:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Exhibits-Events-hover.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#heritage-protocol { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/HPUA.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#heritage-protocol:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/HPUA-hover.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#pepper-library { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Pepper.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#pepper-library:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/Pepper-hover.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#digital-library { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/DigLib.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#digital-library:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/DigLib-hover.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#about { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/About.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#about:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/About-hover.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#faqs { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/FAQ.png"); 
+  background-repeat: no-repeat;
+}
+
+div#sca-home-page-gallery div#faqs:hover { 
+  background-image: url("https://www.lib.fsu.edu/sites/default/files/sites/default/files/upload/sca/FAQ-hover.png"); 
+  background-repeat: no-repeat;
+}
+

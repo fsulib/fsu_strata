@@ -2,14 +2,16 @@
 
 /* Global styles */
 div.five-by-two-column-table a { 
- display: block; 
+ display: inline-block; 
  width: 211px; 
  height: 125px; 
  font-size: 110%; 
  padding: 5px 0 0 10px; 
  text-shadow: 1px 1px 1px black;
+ line-height: 110%;
 }
 div.five-by-two-column-table { width: 100%; display: block; overflow: auto; margin-bottom: 30px; }
+div.five-by-two-column-table div { margin-right: 6px; margin-bottom: 6px; }
 div.five-by-two-column-table div.first-column { width: 211px; float: left; padding: 0 1% 1% 0; height: 125px; background-size: 211px 125px; }
 div.five-by-two-column-table div.second-column { width: 211px; float: left; padding: 0 1% 1% 0; height: 125px; background-size: 211px 125px; }
 div.five-by-two-column-table div.third-column { width: 211px; float: left; padding: 0 1% 1% 0; height: 125px; background-size: 211px 125px;  }
@@ -24,8 +26,7 @@ div.five-by-two-column-table div.tenth-column { width: 211px; float: left; paddi
 /* narrow styles */
 @media only screen and (min-width: 740px) and (max-width: 979px) {
 
-  div.five-by-two-column-table a { 
-   display: block; 
+  div.five-by-two-column-table a {  
    width: 121px; 
    height: 71px; 
    font-size: 75%; 
@@ -50,7 +51,6 @@ div.five-by-two-column-table div.tenth-column { width: 211px; float: left; paddi
 @media only screen and (min-width: 980px) and (max-width: 1199px) {
 
   div.five-by-two-column-table a { 
-   display: block; 
    width: 169px; 
    height: 100px; 
    font-size: 100%; 
@@ -76,7 +76,6 @@ div.five-by-two-column-table div.tenth-column { width: 211px; float: left; paddi
 @media only screen and (min-width: 1200px) {
 
   div.five-by-two-column-table a { 
-   display: block; 
    width: 218px; 
    height: 129px; 
    font-size: 145%; 
