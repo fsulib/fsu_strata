@@ -74,6 +74,12 @@ h6 {
   font-family: "Times New Roman" !important;
   text-transform: uppercase !important;
   font-size: 39px !important;
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+#fsu-subheading {
+  margin-bottom: 0 !important;
 }
 
 div#fsu-global a, nav#block-fsu-strata-main-menu a, 
