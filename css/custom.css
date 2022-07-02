@@ -97,3 +97,14 @@ div.region-footer a {
 a[id] { 
   scroll-margin-top: 190px; 
 }
+
+#site-navigation-footer li {
+  line-height: 120%;
+  margin-bottom: 12px;
+}
+
+table p {
+  margin-bottom: 0;
+  padding: 8px 15px;
+  line-height: 140%;
+}
