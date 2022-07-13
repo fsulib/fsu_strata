@@ -122,9 +122,7 @@
                                                             class="headerSearchSelect s3-m-3" style="height:27px">
                                                         <option selected="selected" value="SITE">This Site</option>
                                                         <option value="GOOGLE">FSU Sites</option>
-                                                        <!--<option value="PHFST">Student Directory</option> -->
-                                                        <option value="PHF">Faculty &amp; Staff Directory</option>
-                                                        <option value="DEPT">Departments &amp; Services</option>
+                                                        <!-- <option value="PHF">Faculty &amp; Staff Directory</option> -->
                                                     </select>
                                                     <br class="visible-sm"/>
                                                     <input type="text" name="keywords" value="" title="Search Input Box"
@@ -147,26 +145,84 @@
                             <div class="row s3-m-10 s3-m-t0">
                                 <div class="col-xs-12">
                                     <div class="row {{ color }}">
-                                        <div class="col-xs-6 visible-xs col-sm-12 text-left">
-                                            <nav class="fsu-nav-global">
 
-                                                <div class="navbar-topnav">
-                                                    {{ render_fsu_region('navigation_collapsible') }}
-                                                </div>
+                                        <div class="col-sm-12 fsu-global-menu s3-p-0">
+                                            <!-- <nav class="fsu-nav-global"> -->
+                                            <nav>
+                    
+                    <!-- Top Sandwich Menu -->
 
-                                            </nav>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-12 fsu-global-menu">
-                                            <nav class="fsu-nav-global text-uppercase">
+                    <div class="col-xs-6 col-sm-2">
+                        <p class="h6">Find &amp; Borrow</p>
+                        <ul class="list-unstyled list-block">
+                            <li><a href="/getting-started">Getting Started</a></li>
+                            <li><a href="https://fsu-flvc.primo.exlibrisgroup.com/discovery/account?vid=01FALSC_FSU:Home&section=overview&lang=en">My Library Account</a></li>
+                            <li><a href="/teaching-and-learning/course-materials">Course Materials</a></li>
+                            <li><a href="/find-and-borrow/leds">Library Express Delivery</a></li>
+                            <li><a href="/find-and-borrow/materials">Borrowing Physical Materials</a></li>
+                            <li><a href="/find-and-borrow/interlibrary-loan">Interlibrary Loan</a></li>
+                        </ul>
+                    </div>
 
-                                                <ul class="nav navbar-nav">
-                                                    <li><a href="/find-and-borrow">Find &amp; Borrow</a></li>
-                                                    <li><a href="/research-and-publish">Research &amp; Publish</a></li>
-                                                    <li><a href="/visit-and-study">Visit &amp; Study</a></li>
-                                                    <li><a href="/collections">Explore Collections</a></li>
-                                                    <li><a href="/about">About</a></li>
-                                                    <li><a href="/help">Help & Support</a></li>
-                                                </ul>
+                    <div class="col-xs-6 col-sm-2">
+                        <p class="h6">Research &amp; Publish</p>
+                        <ul class="list-unstyled list-block">
+                            <li><a href="https://guides.lib.fsu.edu">Research Guides</a></li>
+                            <li><a href="/research-and-publish/research/grant-programs">Grant Programs</a></li>
+                            <li><a href="/research-and-publish/publishing/open-access-support">Open Access Support</a></li>
+                            <li><a href="https://create.fsu.edu">Create FSU Web Hosting</a></li>
+                            <li><a href="/research-and-publish/research/data-services">Research Data Services</a></li>
+                            <li><a href="https://geoset.fsu.edu">GEOSET</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-2">
+                        <p class="h6">Visit &amp; Study</p>
+                        <ul class="list-unstyled list-block">
+                                <li><a href="/visit/hours">Library Hours</a></li>
+                                <li><a href="/visit/visiting">Visitor Information</a></li>
+                                <li><a href="/visit/rooms">Study Spaces</a></li>
+                                <li><a href="/teaching-and-learning/tutoring">Tutoring</a></li>
+                                <li><a href="/visit/accessibility">Accessibility</a></li>
+                            </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-2">
+                        <p class="h6">Explore Collections</p>
+                        <ul class="list-unstyled list-block">
+                            <li><a href="/collections">Collections Overview</a></li>
+                            <li><a href="/special-collections-and-archives">Special Collections</a></li>
+                            <li><a href="/special-collections-and-archives/claude-pepper">Claude Pepper Library</a></li>
+                            <li><a href="/special-collections-and-archives/heritage-and-university-archives">Heritage &amp; Archives</a></li>
+                            <li><a href="https://diginole.lib.fsu.edu">Institutional Repository</a></li>
+                            <li><a href="/about/collection-strategies">Collection Strategies</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-2">
+                        <p class="h6">About</p>
+                        <ul class="list-unstyled list-block">
+                            <li><a href="/about/employee-directory">Employee Directory</a></li>
+                            <li><a href="/about/library-departments">Departments</a></li>
+                            <li><a href="https://fsu.libanswers.com/library-policies/search">Policies</a></li>
+                            <li><a href="/about/employment-opportunities">Employment</a></li>
+                            <li><a href="https://bookstore.fsu.edu/">FSU Bookstore</a></li>
+                            <li><a href="/about/giving">Giving</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-2">
+                        <p class="h6">Help &amp; Support</p>
+                        <ul class="list-unstyled list-block">
+                            <li><a href="/help/ask">Ask a Librarian</a></li>
+                            <li><a href="/help/subject-librarians">Subject Librarians</a></li>
+                            <li><a href="/help/off-campus">Off Campus Access</a></li>
+                            <li><a href="/help/consultation">Request a Consultation</a></li>
+                            <li><a href="https://fsu.libanswers.com/">FAQs</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- End of Top Sandwich Menu -->
 
                                             </nav>
                                         </div>
