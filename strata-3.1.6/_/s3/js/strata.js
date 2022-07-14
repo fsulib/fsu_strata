@@ -13,8 +13,8 @@ function FSU_search(type, keywords) {
       case 'PHFST':
          searchURL = 'https://bb5.fsu.edu/cas/login?service=https://campus.fsu.edu/webapps/portal/frameset.jsp?tab_tab_group_id=_19_1%26SAurl=https%3A%2F%2Fcampus.fsu.edu%2Fwebapps%2FFSU-peoplesearch-bb_bb60%2Fservlet%2FstudentSearchExternal%3FsearchStr%3D' + keywords + '&loginurl=https://campus.fsu.edu/webapps/login/bb_bb60/logincas.jsp?mc=1001';
          break;
-      case 'PHF':
-         searchURL = 'http://directory.fsu.edu/cgi-bin/search/searchList.cgi?searchStr=' + keywords + '+&searchBy=lastname&submit=Search';
+      case 'ONESEARCH':
+         searchURL = 'https://fsu-flvc.primo.exlibrisgroup.com/discovery/search?query=any,contains,' + keywords + '&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0';
          break;
       case 'DEPT':
          searchURL = 'https://fsu.edu/cgi-bin/search/new/sframes?TYPE=' + type + '&KEYWORDS=' + keywords;
@@ -25,7 +25,7 @@ function FSU_search(type, keywords) {
          break;
    }
    //location.href = searchURL;
-   window.open(searchURL, '_blank');
+   window.open(searchURL);
    return false;
 }
 

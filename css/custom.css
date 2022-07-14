@@ -108,3 +108,14 @@ table p {
   padding: 8px 15px;
   line-height: 140%;
 }
+
+.fsu-libraries-global-menu ul li {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  text-align: left;
+  border-bottom: 1px dashed #ccc;
+}
+
+.fsu-libraries-global-menu p {
+  text-align: left;
+}
