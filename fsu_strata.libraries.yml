@@ -26,14 +26,12 @@ theme:
   js:
 #    strata-3.1/_/s3/js/strata.js: {}
     js/custom.js: {preprocess: false}
-    js/script.js: {preprocess: false}
     strata-{strataversion}/_/s3/js/bootstrap.min.js: {}
     strata-{strataversion}/_/s3/js/strata.js: {}
     strata-{strataversion}/_/s3/js/strata-extend.min.js: {}
     strata-{strataversion}/_/s3/js/kwall-custom.js: {}
     strata-{strataversion}/_/s3/js/strata-legacy.min.js: {}
   dependencies:
-    - core/jquery.ui.effects.slide
     - bootstrap/drupal.bootstrap
     - bootstrap/attributes
 
