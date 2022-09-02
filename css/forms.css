@@ -12,11 +12,6 @@
   font-weight: bold !important;
 }
 
-.btn::after {
-  content: " >";
-  font-weight: 600;
-}
-
 .btn.s3-c:hover {
   background-color: #161514;
 }
