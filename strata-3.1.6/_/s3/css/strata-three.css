@@ -34,7 +34,7 @@ Sections
 .s3-n2s  {background-color: #565554; color: #f4f4f4}
 .s3-s    {background-color: #2c2a29; color: #d5d4d4}
 .s3-k    {background-color: #161514; color: #d5d4d4}
-.s3-b    {background-color: #a8bfcb; color: #000000}
+.s3-b    {background-color: #cedae2; color: #000000}
 
 /* Strata: Outside containers for nested strata */
 .s3-bg-gt   {background-color: #782f40}
@@ -54,7 +54,7 @@ Sections
 .s3-bg-n2s  {background-color: #565554}
 .s3-bg-s    {background-color: #2c2a29}
 .s3-bg-k    {background-color: #161514}
-.s3-bg-b    {background-color: #a8bfcb}
+.s3-bg-b    {background-color: #cedae2}
 
 @media screen and (min-width: 768px) {
 	.s3-t, .s3-bg-t {background-color: transparent}
