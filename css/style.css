@@ -4592,6 +4592,10 @@ img[style="float:right"] {
   display: block !important;
 }
 
+.region-sidebar-second ul.menu .active.expanded.dropdown .dropdown-menu {
+  display: block !important;
+}
+
 /* Hide View Mode Form on Preview Screen */
 .user-logged-in #node-preview-form-select {
   display: none;
