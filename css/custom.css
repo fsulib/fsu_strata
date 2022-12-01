@@ -119,3 +119,8 @@ table p {
 .fsu-libraries-global-menu p {
   text-align: left;
 }
+
+.align-center img {
+  margin-left: auto;
+  margin-right: auto;
+}
