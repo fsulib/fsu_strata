@@ -124,3 +124,8 @@ table p {
   margin-left: auto;
   margin-right: auto;
 }
+
+.paragraph--type--text {
+  padding-left: 15px;
+  padding-right: 15px;
+}
