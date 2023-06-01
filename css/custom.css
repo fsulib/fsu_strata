@@ -94,6 +94,8 @@ div.region-footer a {
   margin-top: 30px !important;
 }
 
+.btn p {margin: 0;}
+
 a[id] { 
   scroll-margin-top: 190px; 
 }
