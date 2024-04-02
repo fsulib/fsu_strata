@@ -44,7 +44,9 @@ function openForm(evt, formName) {
 }
 
 //If a tab should be open, click on it
-document.getElementById("defaultOpen").click();
+if(document.getElementById("defaultOpen")){
+    document.getElementById("defaultOpen").click();
+}
 
 /* All Search Function */
 function allSearch(search_form) {
