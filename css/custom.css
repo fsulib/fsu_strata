@@ -132,3 +132,25 @@ table p {
   padding-left: 15px;
   padding-right: 15px;
 }
+
+/* Remove the seal due to new branding guidelines */
+#fsu-masthead .hidden-xs {
+	display: none;
+}
+
+#fsu-masthead #fsu-title {
+	margin-top: 0;
+}
+
+#fsu-home p {
+	padding: .4em 0 0 0;
+}
+
+#fsu-home img {
+	width: 168px;
+	height: 24px;
+}
+
+#fsu-title a {
+	font-weight: 700;
+}
