@@ -21,5 +21,11 @@
       "email": "barsenault@fsu.edu",
       "role": "Maintainer"
     }
-  ]
+  ],
+  "require": {
+    "drupal/bootstrap": "^3.23",
+    "drupal/jquery_ui": "^1.7",
+    "drupal/jquery_ui_draggable": "^2.1",
+    "drupal/jquery_ui_resizable": "^2.1"
+  }
 }
