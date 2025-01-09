@@ -8,7 +8,7 @@ function FSU_search(type, keywords) {
    var searchURL = '';
    switch (type) {
       case 'SITE':
-        searchURL = '/search/node?keys=' + keywords;
+        searchURL = '/advanced-search?search_api_fulltext=' + keywords;
         break;
       case 'PHFST':
          searchURL = 'https://bb5.fsu.edu/cas/login?service=https://campus.fsu.edu/webapps/portal/frameset.jsp?tab_tab_group_id=_19_1%26SAurl=https%3A%2F%2Fcampus.fsu.edu%2Fwebapps%2FFSU-peoplesearch-bb_bb60%2Fservlet%2FstudentSearchExternal%3FsearchStr%3D' + keywords + '&loginurl=https://campus.fsu.edu/webapps/login/bb_bb60/logincas.jsp?mc=1001';
