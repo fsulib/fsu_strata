@@ -154,3 +154,8 @@ table p {
 #fsu-title a {
 	font-weight: 700 !important;
 }
+
+/* Osano FSU cookie consent banner */
+a.osano-cm-link { 
+  color: #CEB888; 
+}
