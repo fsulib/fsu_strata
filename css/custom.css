@@ -135,22 +135,28 @@ table p {
 
 /* Remove the seal due to new branding guidelines */
 #fsu-masthead .hidden-xs {
-	display: none;
+  display: none;
 }
 
 #fsu-masthead #fsu-title {
-	margin-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 #fsu-home p {
-	padding: .4em 0 0 0 !important;
+  padding: .4em 0 0 0 !important;
 }
 
 #fsu-home img {
-	width: 168px !important;
-	height: 24px !important;
+  width: 168px !important;
+  height: 24px !important;
 }
 
 #fsu-title a {
-	font-weight: 700 !important;
+  font-weight: 700 !important;
+}
+
+/* Sticky headers don't work with Strata */
+table.sticky-header thead {
+  position: relative;
+  top: 0;
 }
