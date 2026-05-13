@@ -52,7 +52,7 @@ if(document.getElementById("defaultOpen")){
 function allSearch(search_form) {
   var sanitized_input = encodeURIComponent(document.forms[search_form]["all-search-input"].value);
   var query = document.forms[search_form]["base_query"].value;
-  query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:Home&offset=0";
+  query += sanitized_input + "&tab=Everything&search_scope=MyInst_and_CI&vid=01FALSC_FSU:NDE_FSU&lang=en";
   window.location = query;
   return false;
 }
